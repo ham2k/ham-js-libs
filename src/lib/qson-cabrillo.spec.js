@@ -1,9 +1,13 @@
-const { cabrilloToQSON } = require('./qson-cabrillo')
-const fs = require('fs')
-const path = require('path')
+import { cabrilloToQSON } from './qson-cabrillo'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 describe('cabrilloToQSON', () => {
-  it('should work', () => {
+  it('should work', () => {c
     /* eslint-disable n/handle-callback-err */
     const iaru = fs.readFileSync(path.join(__dirname, './samples/iaru-mixed.log'), 'utf8', (err, data) => data)
 

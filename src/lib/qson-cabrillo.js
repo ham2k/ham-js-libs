@@ -1,7 +1,7 @@
-const camelCase = require('camelcase')
-const { bandForFrequency } = require('@ham2k/lib-operation-data')
+import camelCase from 'camelcase'
+import { bandForFrequency } from '@ham2k/lib-operation-data'
 
-function cabrilloToQSON (str) {
+export function cabrilloToQSON (str) {
   return parseCabrillo(str)
 }
 
@@ -184,6 +184,3 @@ function selectContestSplitter (headers) {
   }
 }
 
-module.exports = {
-  cabrilloToQSON
-}

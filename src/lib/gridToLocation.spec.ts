@@ -34,5 +34,60 @@ describe('gridToLocation', () => {
     expect(gridToLocation('FN43rq44')).toEqual([43.68541666666666, -70.54583333333333]) // Buxton (N1SH)
   })
 
+  it('should work for 6-element grids, all upper-case', () => {
+    expect(gridToLocation('JN58TD')).toEqual([48.145833333333336, 11.625]) // Munich
+    expect(gridToLocation('GF15VC')).toEqual([-34.89583333333333, -56.208333333333336]) // Montevideo
+    expect(gridToLocation('FM18LW')).toEqual([38.9375, -77.04166666666666]) // Washington, DC
+    expect(gridToLocation('RE78IR')).toEqual([-41.27083333333333, 174.70833333333331]) // Wellington
+    expect(gridToLocation('FN31PR')).toEqual([41.72916666666667, -72.70833333333333]) // Newington, CT (W1AW)
+    expect(gridToLocation('CM87WJ')).toEqual([37.395833333333336, -122.125]) // Palo Alto (K6WRU)
+    expect(gridToLocation('EM75KB')).toEqual([35.0625, -85.125]) // Chattanooga (KI6CQ/4)
+    expect(gridToLocation('FN43RQ')).toEqual([43.6875, -70.54166666666666]) // Buxton (N1SH)
+  })
+
+  it('should work for 8-element grids all upper-case', () => {
+    expect(gridToLocation('JN58TD25')).toEqual([48.14791666666667, 11.604166666666668]) // Munich
+    expect(gridToLocation('GF15VC41')).toEqual([-34.91041666666666, -56.2125]) // Montevideo
+    expect(gridToLocation('FM18LW20')).toEqual([38.918749999999996, -77.0625]) // Washington, DC
+    expect(gridToLocation('RE78IR92')).toEqual([-41.28125, 174.7458333333333]) // Wellington
+    expect(gridToLocation('FN31PR21')).toEqual([41.71458333333334, -72.72916666666667]) // Newington, CT (W1AW)
+    expect(gridToLocation('CM87WJ79')).toEqual([37.41458333333333, -122.10416666666667]) // Palo Alto (K6WRU)
+    expect(gridToLocation('EM75KB63')).toEqual([35.05625, -85.11250000000001]) // Chattanooga (KI6CQ/4)
+    expect(gridToLocation('FN43RQ44')).toEqual([43.68541666666666, -70.54583333333333]) // Buxton (N1SH)
+  })
+
+  it('should work for 4-element grids, all lower-case', () => {
+    expect(gridToLocation('jn58')).toEqual([48.5, 11.0]) // Munich
+    expect(gridToLocation('gf15')).toEqual([-34.5, -57.0]) // Montevideo
+    expect(gridToLocation('fm18')).toEqual([38.5, -77.0]) // Washington, DC
+    expect(gridToLocation('re78')).toEqual([-41.5, 175.0]) // Wellington
+    expect(gridToLocation('fn31')).toEqual([41.5, -73.0]) // Newington, CT (W1AW)
+    expect(gridToLocation('cm87')).toEqual([37.5, -123.0]) // Palo Alto (K6WRU)
+    expect(gridToLocation('em75')).toEqual([35.5, -85.0]) // Chattanooga (KI6CQ/4)
+    expect(gridToLocation('fn43')).toEqual([43.5, -71.0]) // Buxton (N1SH)
+  })
+
+  it('should work for 6-element grids, all lower-case', () => {
+    expect(gridToLocation('jn58td')).toEqual([48.145833333333336, 11.625]) // Munich
+    expect(gridToLocation('gf15vc')).toEqual([-34.89583333333333, -56.208333333333336]) // Montevideo
+    expect(gridToLocation('fm18lw')).toEqual([38.9375, -77.04166666666666]) // Washington, DC
+    expect(gridToLocation('re78ir')).toEqual([-41.27083333333333, 174.70833333333331]) // Wellington
+    expect(gridToLocation('fn31pr')).toEqual([41.72916666666667, -72.70833333333333]) // Newington, CT (W1AW)
+    expect(gridToLocation('cm87wj')).toEqual([37.395833333333336, -122.125]) // Palo Alto (K6WRU)
+    expect(gridToLocation('em75kb')).toEqual([35.0625, -85.125]) // Chattanooga (KI6CQ/4)
+    expect(gridToLocation('fn43rq')).toEqual([43.6875, -70.54166666666666]) // Buxton (N1SH)
+  })
+
+  it('should work for 8-element grids, all lower-case', () => {
+    expect(gridToLocation('jn58td25')).toEqual([48.14791666666667, 11.604166666666668]) // Munich
+    expect(gridToLocation('gf15vc41')).toEqual([-34.91041666666666, -56.2125]) // Montevideo
+    expect(gridToLocation('fm18lw20')).toEqual([38.918749999999996, -77.0625]) // Washington, DC
+    expect(gridToLocation('re78ir92')).toEqual([-41.28125, 174.7458333333333]) // Wellington
+    expect(gridToLocation('fn31pr21')).toEqual([41.71458333333334, -72.72916666666667]) // Newington, CT (W1AW)
+    expect(gridToLocation('cm87wj79')).toEqual([37.41458333333333, -122.10416666666667]) // Palo Alto (K6WRU)
+    expect(gridToLocation('em75kb63')).toEqual([35.05625, -85.11250000000001]) // Chattanooga (KI6CQ/4)
+    expect(gridToLocation('fn43rq44')).toEqual([43.68541666666666, -70.54583333333333]) // Buxton (N1SH)
+  })
+
 })
 

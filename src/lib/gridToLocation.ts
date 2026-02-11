@@ -1,6 +1,6 @@
-const GRID_4_REGEX = /^[A-X][A-X][0-9][0-9]$/
-const GRID_6_REGEX = /^[A-X][A-X][0-9][0-9][a-x][a-x]$/
-const GRID_8_REGEX = /^[A-X][A-X][0-9][0-9][a-x][a-x][0-9][0-9]$/
+const GRID_4_REGEX = /^[A-X][A-X][0-9][0-9]$/i
+const GRID_6_REGEX = /^[A-X][A-X][0-9][0-9][a-x][a-x]$/i
+const GRID_8_REGEX = /^[A-X][A-X][0-9][0-9][a-x][a-x][0-9][0-9]$/i
 
 function _lat4(g: string): number {
   return 10 * (g.charCodeAt(1) - 'A'.charCodeAt(0)) + parseInt(g.charAt(3), 10) - 90
@@ -11,11 +11,11 @@ function _lon4(g: string): number {
 }
 
 function _lat6(g: string): number {
-  return (1.0 / 24) * (g.charCodeAt(5) - 'a'.charCodeAt(0))
+  return (1.0 / 24) * (g.charCodeAt(5) - 'A'.charCodeAt(0))
 }
 
 function _lon6(g: string): number {
-  return (1.0 / 12) * (g.charCodeAt(4) - 'a'.charCodeAt(0))
+  return (1.0 / 12) * (g.charCodeAt(4) - 'A'.charCodeAt(0))
 }
 
 function _lat8(g: string): number {
@@ -29,6 +29,9 @@ function _lon8(g: string): number {
 export function gridToLocation(grid: string): [number, number] {
   let lat = 0.0
   let lon = 0.0
+
+  // Case insensitive parsing of grid squares, convert to upper case. See https://adif.org.uk/316/ADIF_316.htm#GridSquare
+  grid = grid.toUpperCase();
 
   if ((grid.length !== 4) && (grid.length !== 6) && (grid.length !== 8)) {
     throw new Error("gridToLocation: grid square: grid must be 4, 6 or 8 chars: " + grid)

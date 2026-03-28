@@ -1,4 +1,4 @@
-import { cabrilloToQSON } from './qson-cabrillo'
+import { cabrilloToQSON } from './qson-cabrillo.js'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -7,9 +7,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 describe('cabrilloToQSON', () => {
-  it('should work', () => {c
-    /* eslint-disable n/handle-callback-err */
-    const iaru = fs.readFileSync(path.join(__dirname, './samples/iaru-mixed.log'), 'utf8', (err, data) => data)
+  it('should work', () => {
+    const iaru = fs.readFileSync(path.join(__dirname, './samples/iaru-mixed.log'), 'utf8')
 
     const qson = cabrilloToQSON(iaru)
     expect(qson.qsos.length).toEqual(518)
@@ -24,13 +23,12 @@ describe('cabrilloToQSON', () => {
     expect(qson.qsos[0].their.call).toEqual('VE3MGY')
     expect(qson.qsos[0].their.rst).toEqual('599')
     expect(qson.qsos[0].their.zoneOrHQ).toEqual('04')
-    expect(qson.qsos[0].refs.contest.ref).toEqual('IARU-HF')
-    expect(qson.qsos[0].refs.contest.categoryBand).toEqual('ALL')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('IARU-HF')
+    expect(qson.qsos[0].refs?.contest.categoryBand).toEqual('ALL')
   })
 
   it('should work with non 599 exchanges', () => {
-    /* eslint-disable n/handle-callback-err */
-    const rtty = fs.readFileSync(path.join(__dirname, './samples/naqp-rtty.log'), 'utf8', (err, data) => data)
+    const rtty = fs.readFileSync(path.join(__dirname, './samples/naqp-rtty.log'), 'utf8')
 
     const qson = cabrilloToQSON(rtty)
     expect(qson.qsos.length).toEqual(360)
@@ -45,12 +43,11 @@ describe('cabrilloToQSON', () => {
     expect(qson.qsos[0].their.call).toEqual('NJ4P')
     expect(qson.qsos[0].their.name).toEqual('ACE')
     expect(qson.qsos[0].their.location).toEqual('TN')
-    expect(qson.qsos[0].refs.contest.ref).toEqual('NAQP-RTTY')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('NAQP-RTTY')
   })
 
   it('should work with longer exchanges', () => {
-    /* eslint-disable n/handle-callback-err */
-    const sweeps = fs.readFileSync(path.join(__dirname, './samples/arrlss-ssb.log'), 'utf8', (err, data) => data)
+    const sweeps = fs.readFileSync(path.join(__dirname, './samples/arrlss-ssb.log'), 'utf8')
 
     const qson = cabrilloToQSON(sweeps)
     expect(qson.qsos.length).toEqual(499)
@@ -69,6 +66,6 @@ describe('cabrilloToQSON', () => {
     expect(qson.qsos[0].their.prec).toEqual('U')
     expect(qson.qsos[0].their.check).toEqual(61)
     expect(qson.qsos[0].their.section).toEqual('NE')
-    expect(qson.qsos[0].refs.contest.ref).toEqual('ARRL-SS-SSB')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('ARRL-SS-SSB')
   })
 })

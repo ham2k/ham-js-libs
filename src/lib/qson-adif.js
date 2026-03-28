@@ -1,19 +1,23 @@
 import { AdifParser } from 'adif-parser-ts'
 import { bandForFrequency } from '@ham2k/lib-operation-data'
+import { decode } from 'html-entities'
 
-export function adifToQSON (str, options) {
+export function adifToQSON(str, options) {
   const qson = parseADIF(str, options)
   qson.version = '0.4'
   return qson
 }
 
-function parseADIF (str, options = {}) {
+function parseADIF(str, options = {}) {
   let headers = {}
   const qsos = [], errors = []
 
   const adif = AdifParser.parseAdi(cleanupBadADIF(str))
 
   headers = adif.header
+  Object.keys(headers).forEach((key) => {
+    headers[key] = decode(headers[key])
+  })
 
   if (headers?.programid === 'LoTW') {
     options.genericQSL = false
@@ -22,20 +26,23 @@ function parseADIF (str, options = {}) {
   }
 
   let qsoCount = 0
-  adif.records.forEach((adifQSO) => {
-    const qso = parseAdifQSO(adifQSO, options)
-    if (qso) {
-      qsoCount++
-      qso._number = qsoCount
-      if (options.source) qso._source = options.source + ":qso-" + qsoCount
+    (adif.records ?? []).forEach((adifQSO) => {
+      Object.keys(adifQSO).forEach((key) => {
+        adifQSO[key] = decode(adifQSO[key])
+      })
+      const qso = parseAdifQSO(adifQSO, options)
+      if (qso) {
+        qsoCount++
+        qso._number = qsoCount
+        if (options.source) qso._source = options.source + ":qso-" + qsoCount
 
-      if (qso._error) {
-        errors.push(qso)
-      } else {
-        qsos.push(qso)
+        if (qso._error) {
+          errors.push(qso)
+        } else {
+          qsos.push(qso)
+        }
       }
-    }
-  })
+    })
 
   qsos.sort((a, b) => {
     if ((a.startAtMillis || 0) !== (b.startAtMillis || 0)) {
@@ -53,7 +60,7 @@ function parseADIF (str, options = {}) {
   }
 }
 
-function condSet (src, dest, field, destField, f) {
+function condSet(src, dest, field, destField, f) {
   let val = src[field] ?? src[field + '_intl']
 
   if (val !== undefined) {
@@ -76,7 +83,7 @@ function cleanupBadADIF(str) {
 const REGEXP_FOR_US_COUNTRY = /(United States|Hawaii|Alaska)/i
 const REGEXP_FOR_OTHER_COUNTRIES_WITH_COUNTIES = /(Puerto Rico)/i
 
-function cleanupCounty (country, county) {
+function cleanupCounty(country, county) {
   if (country?.match(REGEXP_FOR_US_COUNTRY)) {
     return `US/${county.replace(/,\s*/, '/')}`
   } else if (country?.match(REGEXP_FOR_OTHER_COUNTRIES_WITH_COUNTIES)) {
@@ -86,7 +93,7 @@ function cleanupCounty (country, county) {
   }
 }
 
-function parseAdifQSO (adifQSO, options) {
+function parseAdifQSO(adifQSO, options) {
   const qso = { our: {}, their: {} }
   try {
 
@@ -210,7 +217,7 @@ function parseAdifQSO (adifQSO, options) {
     if (adifQSO.eqsl_qsl_rcvd === 'Y') {
       qso.qsl = qso.qsl ?? {}
       qso.qsl.eqsl = { received: true }
-      condSet(adifQSO, qso.qsl.eqsl, 'eqsl_sql_rdate', 'receivedOn', adifDateToISO)
+      condSet(adifQSO, qso.qsl.eqsl, 'eqsl_qsl_rdate', 'receivedOn', adifDateToISO)
     }
 
     if (adifQSO.app_dxkeeper_clublog_qsl_rcvd === 'Y') {
@@ -272,8 +279,8 @@ function parseAdifQSO (adifQSO, options) {
       qso.refs.push({ type: 'sotaActivation', ref: adifQSO.my_sota })
     }
 
-    if (adifQSO.sig || adifQSO.sig_intl || adifQSO.my_sig || adifQSO.my_sig_intl ) {
-      const sigType = (adifQSO.sig_intl || adifQSO.my_sig_intl || adifQSO.sig || adifQSO.my_sig ).toLowerCase()
+    if (adifQSO.sig || adifQSO.sig_intl || adifQSO.my_sig || adifQSO.my_sig_intl) {
+      const sigType = (adifQSO.sig_intl || adifQSO.my_sig_intl || adifQSO.sig || adifQSO.my_sig).toLowerCase()
 
       qso.refs = qso.refs ?? []
 
@@ -300,7 +307,7 @@ function parseAdifQSO (adifQSO, options) {
 
 const REGEXP_FOR_NUMERIC_FREQUENCY = /^[\d.]+$/
 
-function parseFrequency (freq) {
+function parseFrequency(freq) {
   if (freq && freq.match(REGEXP_FOR_NUMERIC_FREQUENCY)) {
     const n = Number.parseFloat(freq) * 1000
     return Math.round((n + Number.EPSILON) * 100) / 100
@@ -309,7 +316,7 @@ function parseFrequency (freq) {
   }
 }
 
-function adifDateToISO (str, time) {
+function adifDateToISO(str, time) {
   if (time && time.indexOf(':')) {
     time = [time.substring(0, 2) || '00', time.substring(2, 4) || '00', time.substring(4, 6) || '00'].join(':')
   } else {

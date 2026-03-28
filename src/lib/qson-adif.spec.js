@@ -203,5 +203,27 @@ describe('adifToQSON', () => {
     expect(qson.qsos[6].startAtMillis).toEqual(Date.parse('2024-01-01T04:04:00Z'))
   })
 
+  it('should work with LOGic files', () => {
+    const logic = fs.readFileSync('src/lib/samples/nu4b-logic.adi', 'ascii', (err, data) => data)
+
+    const qson = adifToQSON(logic)
+
+    expect(qson.qsos.length).toEqual(140)
+
+    expect(qson.qsos[5].startAt).toEqual('2024-01-01T04:00:00Z')
+    expect(qson.qsos[5].startAtMillis).toEqual(Date.parse('2024-01-01T04:00:00Z'))
+    expect(qson.qsos[5].freq).toEqual(3576.37)
+    expect(qson.qsos[5].band).toEqual('80m')
+    expect(qson.qsos[5].mode).toEqual('MFSK')
+    expect(qson.qsos[5].our.call).toEqual('R6YY')
+    expect(qson.qsos[5].their.call).toEqual('F5MXH')
+    expect(qson.qsos[5].their.dxccCode).toEqual(227)
+    expect(qson.qsos[5].their.cqZone).toEqual(14)
+    expect(qson.qsos[5].their.sent).toEqual('+05')
+
+    expect(qson.qsos[6].startAt).toEqual('2024-01-01T04:04:00Z')
+    expect(qson.qsos[6].startAtMillis).toEqual(Date.parse('2024-01-01T04:04:00Z'))
+  })
+
 })
 

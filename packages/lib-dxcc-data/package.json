@@ -1,0 +1,45 @@
+{
+  "name": "@ham2k/lib-dxcc-data",
+  "version": "0.4.1",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@ham2k/lib-country-files": "~0.11",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "csv": "~6",
+    "jest": "~30",
+    "standard": "~17",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "generate": "tsx ./scripts/generate.ts",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist",
+    "src/data/*.json",
+    "src/data/*.js",
+    "src/data/*.ts"
+  ],
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}

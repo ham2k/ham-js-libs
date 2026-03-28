@@ -125,13 +125,13 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
     condSet(adifQSO, qso.our as Record<string, unknown>, 'station_callsign', 'call', (x) => x.replace('_', '/'))
 
     qso.freq = parseFrequency(adifQSO.freq)
-    qso.band = (adifQSO.band && adifQSO.band.toLowerCase()) || bandForFrequency(qso.freq as number | string | undefined)
+    qso.band = (adifQSO.band && adifQSO.band.toLowerCase()) || bandForFrequency(frequencyHzForBand(qso.freq as number | string | undefined))
 
     if (adifQSO.freq_rx) {
       const rx = parseFrequency(adifQSO.freq_rx)
       if (rx !== qso.freq) {
         (qso.their as Record<string, unknown>).freq = parseFrequency(adifQSO.freq_rx)
-        ;(qso.their as Record<string, unknown>).band = adifQSO.band_rx || bandForFrequency((qso.their as Record<string, unknown>).freq as number | string | undefined)
+        ;(qso.their as Record<string, unknown>).band = adifQSO.band_rx || bandForFrequency(frequencyHzForBand((qso.their as Record<string, unknown>).freq as number | string | undefined))
       }
     }
 
@@ -320,6 +320,13 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
 }
 
 const REGEXP_FOR_NUMERIC_FREQUENCY = /^[\d.]+$/
+
+function frequencyHzForBand(freq: number | string | undefined): number {
+  if (freq === undefined) return 0
+  if (typeof freq === 'number') return freq
+  const n = Number.parseFloat(freq)
+  return Number.isFinite(n) ? n : 0
+}
 
 function parseFrequency(freq: string | undefined): number | string | undefined {
   if (freq && freq.match(REGEXP_FOR_NUMERIC_FREQUENCY)) {

@@ -28,8 +28,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "prepublishOnly": "npm run build",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "typecheck": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   }
 }

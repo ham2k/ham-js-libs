@@ -17,9 +17,9 @@
   ],
   "scripts": {
     "build": "tsup",
-    "prepublishOnly": "npm run build",
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest --config jest.config.mjs",
-    "type-check": "tsc --noEmit"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

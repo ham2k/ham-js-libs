@@ -31,8 +31,8 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "test": "jest",
     "build": "tsup",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },

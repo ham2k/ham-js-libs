@@ -20,11 +20,13 @@
     "jest": "~30",
     "standard": "^17.1.2",
     "ts-jest": "^29.1.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "build": "tsup",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "type-check": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
   "standard": {

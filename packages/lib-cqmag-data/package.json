@@ -1,0 +1,43 @@
+{
+  "name": "@ham2k/lib-cqmag-data",
+  "version": "0.4.1",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src/data/*.json",
+    "data/*.json"
+  ],
+  "devDependencies": {
+    "@ham2k/lib-country-files": "^0.11",
+    "@ham2k/lib-dxcc-data": "^0.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "jest": "^30",
+    "standard": "^17",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest",
+    "prepublishOnly": "npm run build"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}

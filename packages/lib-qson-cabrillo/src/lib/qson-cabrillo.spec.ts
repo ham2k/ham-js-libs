@@ -1,0 +1,71 @@
+import { cabrilloToQSON } from './qson-cabrillo.js'
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+describe('cabrilloToQSON', () => {
+  it('should work', () => {
+    const iaru = fs.readFileSync(path.join(__dirname, './samples/iaru-mixed.log'), 'utf8')
+
+    const qson = cabrilloToQSON(iaru)
+    expect(qson.qsos.length).toEqual(518)
+    expect(qson.qsos[0].startAt).toEqual('2021-07-10T12:07:00Z')
+    expect(qson.qsos[0].startAtMillis).toEqual(Date.parse('2021-07-10T12:07:00Z'))
+    expect(qson.qsos[0].freq).toEqual(7002)
+    expect(qson.qsos[0].band).toEqual('40m')
+    expect(qson.qsos[0].mode).toEqual('CW')
+    expect(qson.qsos[0].our.call).toEqual('KI2D')
+    expect(qson.qsos[0].our.rst).toEqual('599')
+    expect(qson.qsos[0].our.zoneOrHQ).toEqual('08')
+    expect(qson.qsos[0].their.call).toEqual('VE3MGY')
+    expect(qson.qsos[0].their.rst).toEqual('599')
+    expect(qson.qsos[0].their.zoneOrHQ).toEqual('04')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('IARU-HF')
+    expect(qson.qsos[0].refs?.contest.categoryBand).toEqual('ALL')
+  })
+
+  it('should work with non 599 exchanges', () => {
+    const rtty = fs.readFileSync(path.join(__dirname, './samples/naqp-rtty.log'), 'utf8')
+
+    const qson = cabrilloToQSON(rtty)
+    expect(qson.qsos.length).toEqual(360)
+    expect(qson.qsos[0].startAt).toEqual('2022-02-26T18:01:00Z')
+    expect(qson.qsos[0].startAtMillis).toEqual(Date.parse('2022-02-26T18:01:00Z'))
+    expect(qson.qsos[0].freq).toEqual(14087)
+    expect(qson.qsos[0].band).toEqual('20m')
+    expect(qson.qsos[0].mode).toEqual('RTTY')
+    expect(qson.qsos[0].our.call).toEqual('KI2D')
+    expect(qson.qsos[0].our.name).toEqual('DAN')
+    expect(qson.qsos[0].our.location).toEqual('NY')
+    expect(qson.qsos[0].their.call).toEqual('NJ4P')
+    expect(qson.qsos[0].their.name).toEqual('ACE')
+    expect(qson.qsos[0].their.location).toEqual('TN')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('NAQP-RTTY')
+  })
+
+  it('should work with longer exchanges', () => {
+    const sweeps = fs.readFileSync(path.join(__dirname, './samples/arrlss-ssb.log'), 'utf8')
+
+    const qson = cabrilloToQSON(sweeps)
+    expect(qson.qsos.length).toEqual(499)
+    expect(qson.qsos[0].startAt).toEqual('2021-11-20T21:03:00Z')
+    expect(qson.qsos[0].startAtMillis).toEqual(Date.parse('2021-11-20T21:03:00Z'))
+    expect(qson.qsos[0].freq).toEqual(14329)
+    expect(qson.qsos[0].band).toEqual('20m')
+    expect(qson.qsos[0].mode).toEqual('SSB')
+    expect(qson.qsos[0].our.call).toEqual('KI2D')
+    expect(qson.qsos[0].our.serial).toEqual(1)
+    expect(qson.qsos[0].our.prec).toEqual('U')
+    expect(qson.qsos[0].our.check).toEqual(20)
+    expect(qson.qsos[0].our.section).toEqual('ENY')
+    expect(qson.qsos[0].their.call).toEqual('KV0I')
+    expect(qson.qsos[0].their.serial).toEqual(4)
+    expect(qson.qsos[0].their.prec).toEqual('U')
+    expect(qson.qsos[0].their.check).toEqual(61)
+    expect(qson.qsos[0].their.section).toEqual('NE')
+    expect(qson.qsos[0].refs?.contest.ref).toEqual('ARRL-SS-SSB')
+  })
+})

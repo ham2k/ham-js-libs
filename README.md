@@ -4,18 +4,18 @@ Monorepo for Ham2K JavaScript libraries. Each package lives under `packages/` an
 
 ## Packages
 
-| Directory | npm name |
-|-----------|----------|
-| `packages/lib-callsigns` | `@ham2k/lib-callsigns` |
-| `packages/lib-country-files` | `@ham2k/lib-country-files` |
-| `packages/lib-cqmag-data` | `@ham2k/lib-cqmag-data` |
-| `packages/lib-dxcc-data` | `@ham2k/lib-dxcc-data` |
-| `packages/lib-format-tools` | `@ham2k/lib-format-tools` |
-| `packages/lib-maidenhead-grid` | `@ham2k/lib-maidenhead-grid` |
+| Directory                     | npm name                    |
+|-------------------------------|-----------------------------|
+| `packages/lib-callsigns`      | `@ham2k/lib-callsigns`      |
+| `packages/lib-country-files`  | `@ham2k/lib-country-files`  |
+| `packages/lib-cqmag-data`     | `@ham2k/lib-cqmag-data`     |
+| `packages/lib-dxcc-data`      | `@ham2k/lib-dxcc-data`      |
+| `packages/lib-format-tools`   | `@ham2k/lib-format-tools`   |
+| `packages/lib-geo-tools-grid` | `@ham2k/lib-geo-tools`      |
 | `packages/lib-operation-data` | `@ham2k/lib-operation-data` |
-| `packages/lib-qson-adif` | `@ham2k/lib-qson-adif` |
-| `packages/lib-qson-cabrillo` | `@ham2k/lib-qson-cabrillo` |
-| `packages/lib-qson-tools` | `@ham2k/lib-qson-tools` |
+| `packages/lib-qson-adif`      | `@ham2k/lib-qson-adif`      |
+| `packages/lib-qson-cabrillo`  | `@ham2k/lib-qson-cabrillo`  |
+| `packages/lib-qson-tools`     | `@ham2k/lib-qson-tools`     |
 
 ## Development
 

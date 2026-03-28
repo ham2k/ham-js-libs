@@ -8,6 +8,19 @@ const dxccCSV = fs.readFileSync('data/dxcc-2020-02.csv', 'utf8')
 
 const dxcc = preprocessDXCCData(dxccCSV)
 
+const locationOverrides = JSON.parse(
+  fs.readFileSync('data/dxcc-locations.json', 'utf8')
+) as Record<string, [number, number]>
+
+Object.values(dxcc).forEach((entity: DXCCEntity) => {
+  if (locationOverrides[entity.entityPrefix]) {
+    entity.lat = locationOverrides[entity.entityPrefix][1]
+    entity.lon = locationOverrides[entity.entityPrefix][0]
+  } else if (entity.lat && entity.lon) {
+    entity.lon = -entity.lon
+  }
+})
+
 const currentDXCC: Record<string, DXCCEntity> = {}
 Object.values(dxcc).forEach((entity: DXCCEntity) => {
   if (!entity.deleted) {

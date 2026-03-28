@@ -3,7 +3,7 @@ import fs from 'fs'
 
 console.log('Preprocessing Country File')
 
-const ctyCSV = fs.readFileSync('data/bigcty-20251125.csv', 'utf8')
+const ctyCSV = fs.readFileSync('data/bigcty-20260213.csv', 'utf8')
 
 const indexes = parseCountryFile(ctyCSV)
 

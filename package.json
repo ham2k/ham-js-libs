@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-country-files",
-  "version": "0.12.20251125",
+  "version": "0.12.20260213",
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",

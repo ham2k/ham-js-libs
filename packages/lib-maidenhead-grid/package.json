@@ -15,6 +15,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@ham2k/lib-dxcc-data": "^1.0.0"
+  },
   "scripts": {
     "build": "tsup",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",

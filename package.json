@@ -1,26 +1,35 @@
 {
   "name": "@ham2k/lib-qson-adif",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "dependencies": {
     "adif-parser-ts": "^0.6.26",
     "html-entities": "^2.6.0",
-    "@ham2k/lib-operation-data": "^0.9.0"
+    "@ham2k/lib-operation-data": "^0.10.4"
   },
   "devDependencies": {
-    "jest": "^29",
-    "standard": "^17"
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
+    "jest": "^30",
+    "ts-jest": "^29.2.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
   },
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
-  },
-  "standard": {
-    "env": [
-      "jest"
-    ]
+    "build": "tsup",
+    "prepublishOnly": "npm run build",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "typecheck": "tsc --noEmit"
   }
 }

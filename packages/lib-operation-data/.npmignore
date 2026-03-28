@@ -1,0 +1,34 @@
+# Source files (we include dist instead)
+src/
+*.ts
+!*.d.ts
+
+# Development files
+.vscode/
+.git/
+.gitignore
+*.log
+.DS_Store
+Thumbs.db
+
+# Test files
+*.spec.ts
+*.test.ts
+*.spec.js
+*.test.js
+jest.config.js
+
+# Build config
+tsconfig.json
+tsconfig.*.json
+
+# Dependencies
+node_modules/
+
+# Other
+tmp/
+.env
+.local.env
+mise.*
+.mise.*
+

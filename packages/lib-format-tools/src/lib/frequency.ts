@@ -8,7 +8,7 @@ export function fmtFreqInMHz (freq: number, { mode } = { mode: 'trim' }): string
     if (mode === 'full') {
       return withSeparator
     } else if (mode === 'compact') { // Remove decimals, but show separator or space for alignment
-      return withSeparator.replace(TRAILING_DIGITS_REGEX, (_, p1, p2) => p2 === '000' ? ' ' : p1)
+      return withSeparator.replace(TRAILING_DIGITS_REGEX, (_, p1, p2) => p2 === '000' ? '' : p1)
     } else { // Remove trailing zeroes
       return withSeparator.replace(TRAILING_DIGITS_REGEX, (_, p1, p2) => p2 === '000' ? '' : p1 + p2)
     }

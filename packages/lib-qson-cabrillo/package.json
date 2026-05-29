@@ -1,10 +1,10 @@
 {
   "name": "@ham2k/lib-qson-cabrillo",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "type": "module",
   "dependencies": {
     "camelcase": "^8.0",
-    "@ham2k/lib-operation-data": "^0.10.4"
+    "@ham2k/lib-operation-data": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",

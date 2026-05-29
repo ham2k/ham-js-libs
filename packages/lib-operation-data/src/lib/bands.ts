@@ -86,7 +86,7 @@ export function bandForFrequency(freq: number): Band {
   return bandForExactFrequencyInMHz(freq) ?? bandForExactFrequencyInMHz(freq * 1000) ?? 'other'
 }
 
-function bandForExactFrequencyInMHz(freq: number): Band | undefined {
+export function bandForExactFrequencyInMHz(freq: number): Band | undefined {
   if (freq >= 130 && freq <= 140) return '2190m'
   else if (freq >= 450 && freq <= 499) return '630m'
   else if (freq >= 500 && freq <= 505) return '560m'

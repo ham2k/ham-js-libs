@@ -4,18 +4,25 @@ Monorepo for Ham2K JavaScript libraries. Each package lives under `packages/` an
 
 ## Packages
 
-| Directory                     | npm name                    |
-|-------------------------------|-----------------------------|
-| `packages/lib-callsigns`      | `@ham2k/lib-callsigns`      |
-| `packages/lib-country-files`  | `@ham2k/lib-country-files`  |
-| `packages/lib-cqmag-data`     | `@ham2k/lib-cqmag-data`     |
-| `packages/lib-dxcc-data`      | `@ham2k/lib-dxcc-data`      |
-| `packages/lib-format-tools`   | `@ham2k/lib-format-tools`   |
-| `packages/lib-geo-tools-grid` | `@ham2k/lib-geo-tools`      |
-| `packages/lib-operation-data` | `@ham2k/lib-operation-data` |
-| `packages/lib-qson-adif`      | `@ham2k/lib-qson-adif`      |
-| `packages/lib-qson-cabrillo`  | `@ham2k/lib-qson-cabrillo`  |
-| `packages/lib-qson-tools`     | `@ham2k/lib-qson-tools`     |
+`@ham2k/lib-qson-tools` - Base types and tools for QSON.
+
+`@ham2k/lib-callsigns` - Callsign parsing and analyzing.
+
+`@ham2k/lib-operation-data` - Basic operation-related data like bands and modes.
+
+`@ham2k/lib-country-files` - AD1C's Country Files lookup and annotations.
+
+`@ham2k/lib-cqmag-data` - Data files related to CQ Magazine, its sponsored contests and related information.
+
+`@ham2k/lib-dxcc-data` - DXCC data and information.
+
+`@ham2k/lib-format-tools` - Tools related to formatting and display of values.
+
+`@ham2k/lib-geo-tools` - Tools related to geographic and grid location information.
+
+`@ham2k/lib-qson-adif` - ADIF import and export for QSON.
+
+`@ham2k/lib-qson-cabrillo` - Cabrillo import and export for QSON.
 
 ## Development
 
@@ -35,6 +42,7 @@ npm run test
 Work on a single package:
 
 ```bash
+cd packages/lib-callsigns
 npm run build -w @ham2k/lib-callsigns
 npm test -w @ham2k/lib-callsigns
 ```

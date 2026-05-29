@@ -6,8 +6,8 @@ describe('qsoKey', () => {
   it('should work', () => {
     expect(qsoKey(qson.qsos[0] as QSON)).toEqual('202105211140|YV6IA|KI2D|30m|FT8')
     expect(qsoKey(qson.qsos[1] as QSON)).toEqual('202105211145|N4NP|KI2D|30m|FT8')
-    expect(qsoKey(qson.qsos[20] as QSON)).toEqual('202105211530|W5APO|KI2D|20m|FT8')
-    expect(qsoKey(qson.qsos[50] as QSON)).toEqual('202105220030|VP8ADR|KI2D|40m|FT8')
+    expect(qsoKey(qson.qsos[10] as QSON)).toEqual('202105211410|N2YNF|KI2D|30m|FT8')
+    expect(qsoKey(qson.qsos[24] as QSON)).toEqual('202105211640|AC1LF|KI2D|20m|FT8')
   })
 })
 

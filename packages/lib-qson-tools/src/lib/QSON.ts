@@ -57,6 +57,7 @@ export type QSLInfo = {
 
 export type QSON = {
   uuid?: string
+  event?: string
   our: CallInfo
   their: CallInfo
   freq: number

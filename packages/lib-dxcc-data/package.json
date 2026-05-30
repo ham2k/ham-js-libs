@@ -1,6 +1,20 @@
 {
   "name": "@ham2k/lib-dxcc-data",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "DXCC entity data for amateur radio",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-dxcc-data",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "dxcc",
+    "entities"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

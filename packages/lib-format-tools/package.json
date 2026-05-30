@@ -1,6 +1,19 @@
 {
   "name": "@ham2k/lib-format-tools",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "description": "Formatting tools for amateur radio applications",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-format-tools",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "formatting"
+  ],
   "type": "module",
   "dependencies": {},
   "devDependencies": {

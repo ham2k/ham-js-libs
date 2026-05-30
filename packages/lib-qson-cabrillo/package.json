@@ -1,6 +1,22 @@
 {
   "name": "@ham2k/lib-qson-cabrillo",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Cabrillo format support for QSON amateur radio QSO data",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-qson-cabrillo",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "cabrillo",
+    "contest",
+    "qso",
+    "qson"
+  ],
   "type": "module",
   "dependencies": {
     "camelcase": "^8.0",

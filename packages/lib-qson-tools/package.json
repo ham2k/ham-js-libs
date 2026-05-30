@@ -1,6 +1,20 @@
 {
   "name": "@ham2k/lib-qson-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Tools for working with QSON amateur radio QSO data",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-qson-tools",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "qso",
+    "qson"
+  ],
   "type": "module",
   "devDependencies": {
     "@types/jest": "^30.0.0",

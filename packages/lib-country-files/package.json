@@ -1,6 +1,21 @@
 {
   "name": "@ham2k/lib-country-files",
-  "version": "1.0.20260213",
+  "version": "1.0.20260214",
+  "description": "Country files data for amateur radio",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-country-files",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "country files",
+    "entities",
+    "dxcc"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",

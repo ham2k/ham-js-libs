@@ -1,6 +1,21 @@
 {
   "name": "@ham2k/lib-geo-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "Geographic tools for amateur radio including grid squares",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-geo-tools",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "geo",
+    "maidenhead",
+    "grid square"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

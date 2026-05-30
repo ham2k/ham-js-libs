@@ -1,6 +1,20 @@
 {
   "name": "@ham2k/lib-operation-data",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "description": "Amateur radio basic operation data and definitions",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-operation-data",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "operation",
+    "qso"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

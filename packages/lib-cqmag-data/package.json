@@ -1,6 +1,20 @@
 {
   "name": "@ham2k/lib-cqmag-data",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "CQ Magazine data for amateur radio contests and entities",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-cqmag-data",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "cq magazine",
+    "contests"
+  ],
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

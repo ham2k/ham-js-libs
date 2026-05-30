@@ -1,6 +1,21 @@
 {
   "name": "@ham2k/lib-qson-adif",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "description": "ADIF format support for QSON amateur radio QSO data",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-qson-adif",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "adif",
+    "qso",
+    "qson"
+  ],
   "type": "module",
   "dependencies": {
     "adif-parser-ts": "^0.7.2",

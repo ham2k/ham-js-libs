@@ -135,7 +135,7 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
       }
     }
 
-    qso.mode = adifQSO.mode
+    qso.mode = adifQSO.submode ?? adifQSO.mode
 
     if (adifQSO.qso_date) {
       qso.startAt = adifDateToISO(adifQSO.qso_date, adifQSO.time_on || adifQSO.time_off || '000000')

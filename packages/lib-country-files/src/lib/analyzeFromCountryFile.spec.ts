@@ -16,7 +16,7 @@ describe('Country File analysis and annotations', () => {
 
     it('should find the Country File version', () => {
       const info = analyzeFromCountryFile({ call: 'VERSION' })
-      expect(info.entityName).toEqual('Corsica')
+      expect(info.entityName).toEqual('Gibraltar')
     })
 
     it('should annotate from a DXCC code', () => {
@@ -41,8 +41,8 @@ describe('Country File analysis and annotations', () => {
       expect(info.entityPrefix).toEqual('KP4')
       expect(info.cqZone).toEqual(8)
 
-      // But KP3Y lives in the continental US
-      info = analyzeFromCountryFile({ call: 'KP3Y', baseCall: 'KP3Y', prefix: 'KP3', isoPrefix: 'KP' })
+      // But KP3RK lives in the continental US
+      info = analyzeFromCountryFile({ call: 'KP3RK', baseCall: 'KP3RK', prefix: 'KP3', isoPrefix: 'KP' })
       expect(info.entityPrefix).toEqual('K')
       expect(info.cqZone).toEqual(5)
 

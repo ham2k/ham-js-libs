@@ -61,6 +61,7 @@ export const ADIF_MODES: readonly string[] = [
   'DYNAMIC',
   'FAX',
   'FM',
+  'FSK',
   'FSK441',
   'FT8',
   'HELL',
@@ -73,6 +74,8 @@ export const ADIF_MODES: readonly string[] = [
   'MFSK',
   'MSK144',
   'MT63',
+  'MTONE',
+  'ODFM',
   'OLIVIA',
   'OPERA',
   'PAC',
@@ -98,16 +101,20 @@ export const ADIF_MODES: readonly string[] = [
 ] as const
 
 export const ADIF_SUBMODES: Record<string, readonly string[]> = {
+  'CW': ['PCW'],
   'CHIP': ['CHIP64', 'CHIP128'],
   'DIGITALVOICE': ['C4FM', 'DMR', 'DSTAR', 'FREEDV', 'M17'],
   'DOMINO': ['DOM-M', 'DOM4', 'DOM5', 'DOM8', 'DOM11', 'DOM16', 'DOM22', 'DOM44', 'DOM88', 'DOMINOEX', 'DOMINOF'],
-  'DYNAMIC': ['VARA HF', 'VARA SATELLITE', 'VARA FM 1200', 'VARA FM 9600'],
-  'HELL': ['FMHELL', 'FSKHELL', 'HELL80', 'HELLX5', 'HELLX9', 'HFSK', 'PSKHELL', 'SLOWHELL'],
+  'DYNAMIC': ['FREEDATA', 'VARA HF', 'VARA SATELLITE', 'VARA FM 1200', 'VARA FM 9600'],
+  'FSK': ['SCAMP_FAST', 'SCAMP_SLOW', 'SCAMP_VSLOW'],
+  'HELL': ['FMHELL', 'FSKH105', 'FSKH245', 'FSKHELL', 'HELL80', 'HELLX5', 'HELLX9', 'HFSK', 'PSKHELL', 'SLOWHELL'],
   'ISCAT': ['ISCAT-A', 'ISCAT-B'],
   'JT4': ['JT4A', 'JT4B', 'JT4C', 'JT4D', 'JT4E', 'JT4F', 'JT4G'],
-  'JT9': ['JT9-1', 'JT9', 'JT9-2', 'JT9-5', 'JT9-10', 'JT9-30', 'JT9A', 'JT9B', 'JT9C', 'JT9D', 'JT9E', 'JT9E FAST', 'JT9F', 'JT9F FAST', 'JT9G', 'JT9G FAST', 'JT9H', 'JT9H FAST'],
+  'JT9': ['JT9-1', 'JT9-2', 'JT9-5', 'JT9-10', 'JT9-30', 'JT9A', 'JT9B', 'JT9C', 'JT9D', 'JT9E', 'JT9E FAST', 'JT9F', 'JT9F FAST', 'JT9G', 'JT9G FAST', 'JT9H', 'JT9H FAST'],
   'JT65': ['JT65A', 'JT65B', 'JT65B2', 'JT65C', 'JT65C2'],
-  'MFSK': ['FSQCALL', 'FST4', 'FST4W', 'FT4', 'FT2','JS8', 'JTMS', 'MFSK4', 'MFSK8', 'MFSK11', 'MFSK16', 'MFSK22', 'MFSK31', 'MFSK32', 'MFSK64', 'MFSK64L', 'MFSK128 MFSK128L', 'Q65'],
+  'MFSK': ['FSQCALL', 'FST4', 'FST4W', 'FT4', 'FT2', 'JS8', 'JTMS', 'MFSK4', 'MFSK8', 'MFSK11', 'MFSK16', 'MFSK22', 'MFSK31', 'MFSK32', 'MFSK64', 'MFSK64L', 'MFSK128 MFSK128L', 'Q65'],
+  'MTONE': ['SCAMP_OO', 'SCAMP_OO_SLW'],
+  'ODFM': ['RIBBIT_PIX', 'RIBBIT_SMS'],
   'OLIVIA': ['OLIVIA 4/125', 'OLIVIA 4/250', 'OLIVIA 8/250', 'OLIVIA 8/500', 'OLIVIA 16/500', 'OLIVIA 16/1000', 'OLIVIA 32/1000'],
   'OPERA': ['OPERA-BEACON', 'OPERA-QSO'],
   'PAC': ['PAC2', 'PAC3', 'PAC4'],
@@ -121,6 +128,23 @@ export const ADIF_SUBMODES: Record<string, readonly string[]> = {
   'THRB': ['THRBX', 'THRBX1', 'THRBX2', 'THRBX4', 'THROB1', 'THROB2', 'THROB4'],
   'TOR': ['AMTORFEC', 'GTOR', 'NAVTEX', 'SITORB']
 } as const
+
+export const ALL_MODES: readonly string[] = [
+  ...new Set([
+    ...ADIF_MODES,
+    ...Object.values(ADIF_SUBMODES).flat()
+  ])
+].sort()
+
+export const PHONE_MODES: readonly string[] = [
+  'SSB',
+  'USB',
+  'LSB',
+  'FM',
+  'AM',
+  'DIGITALVOICE',
+  ...ADIF_SUBMODES.DIGITALVOICE,
+] as const
 
 export const ADIF_MODE_FOR_SUBMODE: Record<string, string> = {}
 Object.keys(ADIF_SUBMODES).forEach(mode => {
@@ -144,7 +168,7 @@ export function superModeForMode(mode: string): SuperMode {
 
   if (mode === 'CW') {
     return 'CW'
-  } else if (mode === 'SSB' || mode === 'FM' || mode === 'AM' || mode === 'DIGITALVOICE' || mode === 'PHONE') {
+  } else if (PHONE_MODES.includes(mode)) {
     return 'PHONE'
   } else {
     return 'DATA'

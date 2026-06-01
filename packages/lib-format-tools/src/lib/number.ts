@@ -27,6 +27,10 @@ const FORMATS: Record<NumberFormat, FormatOptions> = {
 const locale = getCurrentLocale()
 
 export function fmtNumber (n: number | string, format: NumberFormat = 'default'): string {
+  if (n === null || n === undefined) {
+    return ''
+  }
+
   if (typeof n === 'string') {
     n = Number.parseFloat(n)
   }
@@ -36,6 +40,10 @@ export function fmtNumber (n: number | string, format: NumberFormat = 'default')
 
 function numberFormatterGenerator (format: NumberFormat) {
   return (n: number | string): string => {
+    if (n === null || n === undefined) {
+      return ''
+    }
+
     if (typeof n === 'string') {
       n = Number.parseFloat(n)
     }

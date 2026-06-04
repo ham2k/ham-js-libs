@@ -5,36 +5,36 @@
  * If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { QSON, RefInfo } from "./QSON"
+import { Operation, QSON, RefInfo } from "./QSON"
 
-export function findRef (obj: QSON | RefInfo[], type: string): RefInfo | undefined {
+export function findRef<TRef extends RefInfo> (obj: QSON | Operation | RefInfo[], type: string): TRef | undefined {
   if (Array.isArray(obj)) {
-    return obj.find(r => r?.type === type)
+    return obj.find(r => r?.type === type) as TRef | undefined
   } else {
-    return obj?.refs?.find(r => r?.type === type)
+    return obj?.refs?.find(r => r?.type === type) as TRef | undefined
   }
 }
 
-export function hasRef (obj: QSON | RefInfo[], type: string): boolean {
+export function hasRef (obj: QSON | Operation | RefInfo[], type: string): boolean {
   return !!findRef(obj, type)
 }
 
-export function filterRefs (obj: QSON | RefInfo[], type: string): RefInfo[] {
+export function filterRefs<TRef extends RefInfo> (obj: QSON | Operation | RefInfo[], type: string): TRef[] {
   if (Array.isArray(obj)) {
-    return obj.filter(r => r?.type === type)
+    return obj.filter(r => r?.type === type) as TRef[]
   } else {
-    return obj?.refs?.filter(r => r?.type === type) ?? []
+    return obj?.refs?.filter(r => r?.type === type) as TRef[] ?? []
   }
 }
 
-export function excludeRefs (obj: QSON | RefInfo[], type: string): RefInfo[] {
+export function excludeRefs<TRef extends RefInfo> (obj: QSON | Operation | RefInfo[], type: string): TRef[] {
   if (Array.isArray(obj)) {
-    return obj.filter(r => r?.type !== type)
+    return obj.filter(r => r?.type !== type) as TRef[]
   } else {
-    return obj?.refs?.filter(r => r?.type !== type) ?? []
+    return obj?.refs?.filter(r => r?.type !== type) as TRef[] ?? []
   }
 }
-export function refsToString (obj: QSON | RefInfo[], type: string, options: { limit?: number, separator?: string } = {}): string {
+export function refsToString (obj: QSON | Operation | RefInfo[], type: string, options: { limit?: number, separator?: string } = {}): string {
   let refs
   refs = filterRefs(obj, type)
   let suffix = ''
@@ -44,7 +44,7 @@ export function refsToString (obj: QSON | RefInfo[], type: string, options: { li
       refs = refs.slice(0, options.limit)
     }
   }
-  return refs.filter(r => r?.ref).map(r => r.ref).join(options.separator ?? ', ') + suffix
+  return refs.filter(r => r?.ref).map(r => r.ref as string).join(options.separator ?? ', ') + suffix
 }
 
 export function stringToRefs (type: string, str: string, options: { separator?: string, regex?: RegExp } = {}): RefInfo[] {
@@ -55,25 +55,25 @@ export function stringToRefs (type: string, str: string, options: { separator?: 
   return refs.filter(ref => ref).map(ref => ({ type, ref }))
 }
 
-export function replaceRefs (originalRefs: QSON | RefInfo[], type: string, newRefs: RefInfo[]): RefInfo[] {
+export function replaceRefs (originalRefs: QSON | Operation | RefInfo[], type: string, newRefs: RefInfo[]): RefInfo[] {
   const otherRefs = excludeRefs(originalRefs, type)
   newRefs && newRefs.forEach(r => { r.type = type })
   return [...otherRefs, ...newRefs]
 }
 
-export function replaceRef (originalRefs: QSON | RefInfo[], type: string, newRef: RefInfo): RefInfo[] {
+export function replaceRef (originalRefs: QSON | Operation | RefInfo[], type: string, newRef: RefInfo): RefInfo[] {
   return replaceRefs(originalRefs, type, [newRef])
 }
 
-export function removeRefs (originalRefs: QSON | RefInfo[], type: string): RefInfo[] {
+export function removeRefs (originalRefs: QSON | Operation | RefInfo[], type: string): RefInfo[] {
   return replaceRefs(originalRefs, type, [])
 }
 
-export function removeRef (originalRefs: QSON | RefInfo[], type: string): RefInfo[] {
+export function removeRef (originalRefs: QSON | Operation | RefInfo[], type: string): RefInfo[] {
   return replaceRefs(originalRefs, type, [])
 }
 
-export function mergeRefs (aRefs: QSON | RefInfo[], bRefs: QSON | RefInfo[]): RefInfo[] {
+export function mergeRefs (aRefs: QSON | Operation | RefInfo[], bRefs: QSON | Operation | RefInfo[]): RefInfo[] {
   const newRefs = Array.isArray(aRefs) ? [...aRefs] : aRefs?.refs ?? []
   if (Array.isArray(bRefs)) {
     bRefs.forEach(ref => {

@@ -72,3 +72,16 @@ export type QSON = {
   refs?: RefInfo[]
   qsl?: QSLInfo[]
 }
+
+export type Operation = {
+  uuid?: string
+  deleted?: boolean
+  stationCall?: string
+  stationCallPlus?: string
+  operatorCall?: string
+  grid?: string
+  qsoCount?: number
+  title?: string
+  qsos?: QSON[]
+  refs?: RefInfo[]
+}

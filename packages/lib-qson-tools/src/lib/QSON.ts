@@ -55,9 +55,14 @@ export type QSLInfo = {
   received?: boolean
 }
 
+export type EventInfo = {
+  event: string
+  operation?: Operation
+}
+
 export type QSON = {
   uuid?: string
-  event?: string
+  event?: EventInfo
   our: CallInfo
   their: CallInfo
   freq: number
@@ -68,7 +73,8 @@ export type QSON = {
   endAt?: string
   endAtMillis?: number
   number?: number
-  line?: number,
+  line?: number
+  deleted?: boolean
   refs?: RefInfo[]
   qsl?: QSLInfo[]
 }

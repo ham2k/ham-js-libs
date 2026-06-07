@@ -22,7 +22,7 @@ export interface BandPlansData {
 export interface SegmentWithMetadata {
   name: string
   mhz: [number, number]
-  mode?: string | null
+  mode?: string | null | false
   submode?: string
   priority?: number
   band: string

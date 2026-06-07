@@ -199,7 +199,7 @@ const AllSegments: SegmentWithMetadata[] = Object.keys(bandPlansData.bands).redu
   )
 }, [] as SegmentWithMetadata[])
 
-export function modeForFrequency(frequency: number, options: ModeForFrequencyOptions = {}): string | null | undefined {
+export function modeForFrequency(frequency: number, options: ModeForFrequencyOptions = {}): string | null | undefined | false{
   const { ituRegion, countryCode, entityPrefix } = options
 
   const segments = AllSegments.filter(segment => (

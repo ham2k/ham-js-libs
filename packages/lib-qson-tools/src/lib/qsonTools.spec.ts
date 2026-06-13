@@ -3,7 +3,92 @@
  */
 
 import { QSON, RefInfo } from './QSON'
-import { filterNearDupes, filterQSOsWithSectionRefs } from './qsonTools'
+import { filterNearDupes, filterQSOsWithSectionRefs, forEachQSOWithSectionContext, mapQSOsWithSectionContext } from './qsonTools'
+
+describe('forEachQSOWithSectionContext', () => {
+  it('walks in order and applies section updates from start/break events', () => {
+    const seen: { uuid?: string, sectionRefs?: RefInfo[], sectionGrid?: string }[] = []
+    const operation = {
+      refs: [{ type: 'pota', ref: 'US-1001' }],
+      grid: 'FN31'
+    }
+
+    const qsos = [
+      { uuid: 'q1', their: { call: 'K1AAA' } },
+      {
+        uuid: 'start',
+        event: {
+          event: 'start',
+          operation: {
+            refs: [{ type: 'pota', ref: 'US-2002' }],
+            grid: 'FM18'
+          }
+        }
+      },
+      { uuid: 'q2', their: { call: 'K1BBB' } },
+      {
+        uuid: 'deleted-break',
+        deleted: true,
+        event: {
+          event: 'break',
+          operation: {
+            refs: [{ type: 'pota', ref: 'US-3003' }],
+            grid: 'EM12'
+          }
+        }
+      },
+      { uuid: 'q3', their: { call: 'K1CCC' } }
+    ] as QSON[]
+
+    forEachQSOWithSectionContext({
+      qsos,
+      operation,
+      withEvents: true,
+      callback: ({ qso, sectionRefs, sectionGrid }) => {
+        seen.push({ uuid: qso.uuid, sectionRefs, sectionGrid })
+      }
+    })
+
+    expect(seen).toEqual([
+      { uuid: 'q1', sectionRefs: [{ type: 'pota', ref: 'US-1001' }], sectionGrid: 'FN31' },
+      { uuid: 'start', sectionRefs: [{ type: 'pota', ref: 'US-2002' }], sectionGrid: 'FM18' },
+      { uuid: 'q2', sectionRefs: [{ type: 'pota', ref: 'US-2002' }], sectionGrid: 'FM18' },
+      { uuid: 'q3', sectionRefs: [{ type: 'pota', ref: 'US-2002' }], sectionGrid: 'FM18' }
+    ])
+  })
+})
+
+describe('mapQSOsWithSectionContext', () => {
+  it('maps included QSOs with the active section context', () => {
+    const mapped = mapQSOsWithSectionContext({
+      qsos: [
+        { uuid: 'q1', their: { call: 'K1AAA' } },
+        {
+          uuid: 'start',
+          event: {
+            event: 'start',
+            operation: {
+              refs: [{ type: 'sota', ref: 'W1/AA-002' }],
+              grid: 'FN20'
+            }
+          }
+        },
+        { uuid: 'q2', their: { call: 'K1BBB' } },
+        { uuid: 'q3', their: { call: 'K1CCC' }, deleted: true }
+      ] as QSON[],
+      operation: {
+        refs: [{ type: 'sota', ref: 'W1/AA-001' }],
+        grid: 'FN31'
+      },
+      map: ({ qso, sectionGrid }) => ({ uuid: qso.uuid, sectionGrid })
+    })
+
+    expect(mapped).toEqual([
+      { uuid: 'q1', sectionGrid: 'FN31' },
+      { uuid: 'q2', sectionGrid: 'FN20' }
+    ])
+  })
+})
 
 describe('filterQSOsWithSectionRefs', () => {
   it('tracks section refs across start/break events and filters by section ref', () => {

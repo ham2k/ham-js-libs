@@ -15,6 +15,70 @@ type FilterFunctionParams = {
   sectionGrid?: string
 }
 
+type ForEachQSOWithSectionContextParams = {
+  qsos: QSON[]
+  operation: Operation
+  withEvents?: boolean
+  withDeleted?: boolean
+  callback: (params: FilterFunctionParams) => void
+}
+
+type MapQSOsWithSectionContextParams<T> = {
+  qsos: QSON[]
+  operation: Operation
+  withEvents?: boolean
+  withDeleted?: boolean
+  map: (params: FilterFunctionParams) => T
+}
+
+export function forEachQSOWithSectionContext(params: ForEachQSOWithSectionContextParams): void {
+  const {
+    qsos, operation,
+    withEvents = false,
+    withDeleted = false,
+    callback
+  } = params
+
+  let sectionRefs = operation?.refs ?? []
+  let sectionGrid = operation?.grid ?? undefined
+
+  qsos.forEach(qso => {
+    if (!qso.deleted && (qso.event?.event === 'break' || qso.event?.event === 'start')) {
+      sectionRefs = qso.event.operation?.refs ?? []
+      sectionGrid = qso.event.operation?.grid ?? undefined
+    }
+
+    if (!withEvents && qso.event) return
+
+    if (!withDeleted && qso.deleted) return
+
+    callback({ qso, sectionRefs, sectionGrid })
+  })
+}
+
+export function mapQSOsWithSectionContext<T>(params: MapQSOsWithSectionContextParams<T>): T[] {
+  const {
+    qsos, operation,
+    withEvents = false,
+    withDeleted = false,
+    map
+  } = params
+
+  const mapped: T[] = []
+
+  forEachQSOWithSectionContext({
+    qsos,
+    operation,
+    withEvents,
+    withDeleted,
+    callback: context => {
+      mapped.push(map(context))
+    }
+  })
+
+  return mapped
+}
+
 export function filterQSOsWithSectionRefs(params: FilterQSOsWithSectionRefsParams): QSON[] {
   const { 
     qsos, operation, 
@@ -24,34 +88,28 @@ export function filterQSOsWithSectionRefs(params: FilterQSOsWithSectionRefsParam
     filter 
   } = params
 
-  let sectionRefs = operation?.refs ?? []
-  let sectionGrid = operation?.grid ?? undefined
   const actualSectionRefs = (withSectionRefs ?? []).filter(ref => ref?.type && ref?.ref)
-  let sectionIncludesRefs = actualSectionRefs.length === 0 || actualSectionRefs.every(
-    ref => sectionRefs.find(
-      sectionRef => sectionRef.type === ref.type && sectionRef.ref === ref.ref
-    )
-  )
+  const filtered: QSON[] = []
 
-  return qsos.filter(qso => {
-    if (!qso.deleted && (qso.event?.event === 'break' || qso.event?.event === 'start')) {
-      sectionRefs = qso.event.operation?.refs ?? []
-      sectionGrid = qso.event.operation?.grid ?? undefined
-      sectionIncludesRefs = actualSectionRefs.length === 0 || actualSectionRefs.every(
-        ref => sectionRefs.find(
+  forEachQSOWithSectionContext({
+    qsos,
+    operation,
+    withEvents,
+    withDeleted,
+    callback: ({ qso, sectionRefs, sectionGrid }) => {
+      const sectionIncludesRefs = actualSectionRefs.length === 0 || actualSectionRefs.every(
+        ref => sectionRefs?.find(
           sectionRef => sectionRef.type === ref.type && sectionRef.ref === ref.ref
         )
       )
+      if (!sectionIncludesRefs) return
+      if (filter?.({ qso, sectionRefs, sectionGrid }) ?? true) {
+        filtered.push(qso)
+      }
     }
-
-    if (!withEvents && qso.event) return false
-
-    if (!withDeleted && qso.deleted) return false
-
-    if (withSectionRefs && !sectionIncludesRefs) return false
-
-    return filter?.({ qso, sectionRefs, sectionGrid }) ?? true
   })
+
+  return filtered
 }
 
 type FilterNearDupesParams = FilterQSOsWithSectionRefsParams & {
@@ -79,4 +137,3 @@ export function filterNearDupes(params: FilterNearDupesParams): QSON[] {
 
   return filterQSOsWithSectionRefs({ ...rest, filter: actualFilter })
 }
-

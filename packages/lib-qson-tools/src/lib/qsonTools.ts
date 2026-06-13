@@ -80,12 +80,12 @@ export function mapQSOsWithSectionContext<T>(params: MapQSOsWithSectionContextPa
 }
 
 export function filterQSOsWithSectionRefs(params: FilterQSOsWithSectionRefsParams): QSON[] {
-  const { 
-    qsos, operation, 
-    withEvents = false, 
-    withDeleted = false, 
-    withSectionRefs, 
-    filter 
+  const {
+    qsos, operation,
+    withEvents = false,
+    withDeleted = false,
+    withSectionRefs,
+    filter
   } = params
 
   const actualSectionRefs = (withSectionRefs ?? []).filter(ref => ref?.type && ref?.ref)
@@ -113,7 +113,9 @@ export function filterQSOsWithSectionRefs(params: FilterQSOsWithSectionRefsParam
 }
 
 type FilterNearDupesParams = FilterQSOsWithSectionRefsParams & {
-  qso: QSON
+  qso: QSON,
+  qsos: QSON[],
+  filter?: (params: FilterFunctionParams) => boolean
 }
 /**
  * Returns QSOs that happened before `qso`

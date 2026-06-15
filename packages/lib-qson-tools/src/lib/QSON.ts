@@ -19,7 +19,7 @@ export type CallInfo = {
   cqZone?: number
   ituZone?: number
   regionCode?: string
-  gmtOffset?: number
+  tz?: string
   matchSource?: string
   matchNote?: string
 

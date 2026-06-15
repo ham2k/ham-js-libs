@@ -112,7 +112,7 @@ export function analyzeFromCountryFile(info: AnnotatedCallInfo, options: Analyze
     if (match.regionCode ?? entity.regionCode) parts.regionCode = match.regionCode ?? entity.regionCode
     parts.lat = match.y ?? entity.lat
     parts.lon = match.x ?? entity.lon
-    parts.gmtOffset = entity.gmtOffset
+    parts.tz = entity.tz
     if (match.matchSource) parts.matchSource = match.matchSource
     if (match.matchNote) parts.matchNote = match.matchNote
     parts.locSource = 'prefix'

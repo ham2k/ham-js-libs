@@ -10,7 +10,6 @@ export interface CFEntity {
   lat: number
   lon: number
   tz: string
-  gmtOffset?: string
   isWAE?: boolean
   regionCode?: string
 }
@@ -47,7 +46,7 @@ export type CombinedCallInfo = ParsedCallsign & {
   ituZone?: number
   lat?: number
   lon?: number
-  gmtOffset?: string
+  tz?: string
   matchSource?: string
   matchNote?: string
   locSource?: string

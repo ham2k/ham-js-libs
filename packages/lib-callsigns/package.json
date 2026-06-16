@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-callsigns",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library for working with amateur radio callsigns",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {

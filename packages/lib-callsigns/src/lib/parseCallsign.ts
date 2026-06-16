@@ -29,7 +29,7 @@ const SSID_REGEXP = /-[A-Z0-9-]{1,}/
  */
 
 export interface ParsedCallsign {
-  call?: string
+  call: string
   baseCall?: string
   prefix?: string
   extendedPrefix?: string
@@ -84,7 +84,7 @@ export interface ParsedCallsign {
  * @param info - Optional existing info object to merge results into
  * @returns Parsed callsign information
  */
-export function parseCallsign(callsign: string | null | undefined, info: ParsedCallsign = {}): ParsedCallsign {
+export function parseCallsign(callsign: string | null | undefined, info: ParsedCallsign = { call: '' }): ParsedCallsign {
   if (!callsign) return info
 
   callsign = callsign.trim().toUpperCase()
@@ -155,7 +155,7 @@ const PREFIX_REGEXP = /^(3D[A-Z0-9]|5U[A-Z]|[0-9][A-Z]{1,2}|[ACDEHJLOPQSTUVXYZ][
 
 const SPECIAL_PREFIX_REGEXP = /^(5U)\a/
 
-export function processPrefix(callsign: string, info: ParsedCallsign = {}): ParsedCallsign {
+export function processPrefix(callsign: string, info: ParsedCallsign = { call: '' }): ParsedCallsign {
   const prefixParts = callsign.match(PREFIX_REGEXP)
 
   if (prefixParts) {
@@ -193,7 +193,7 @@ const SUFFIXED_COUNTRY_REGEXP = /^([AKNW][LHPG]|K|W|V[AEYO]|CY|O[ABC]|VP9)[0-9]*
 const KNOWN_INDICATORS = ['QRP', 'P', 'M', 'AM', 'MM', 'AA', 'AG', 'AE', 'KT', 'R']
 // Some of these (AA AG AE KT) are defined by the FCC [here](https://www.law.cornell.edu/cfr/text/47/97.119)
 
-function processPostindicator(indicator: string, info: ParsedCallsign = {}): ParsedCallsign {
+function processPostindicator(indicator: string, info: ParsedCallsign = { call: '' }): ParsedCallsign {
   if (indicator.match(DIGITS_REGEXP)) {
     // If N0CALL/1, parse prefix from callsign, but replace number
     info.digit = indicator

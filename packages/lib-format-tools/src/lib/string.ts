@@ -59,7 +59,7 @@ const MODAL_CAPITALIZATION_EXCEPTIONS: Record<string, Record<string, string>> = 
   }
 }
 
-export function capitalizeString (str: string, options: { content?: 'text' | 'name', force?: boolean } = {}) {
+export function capitalizeString(str: string, options: { content?: 'text' | 'name', force?: boolean } = {}) {
   const { content = 'text' } = options
   let { force = true } = options
 
@@ -96,7 +96,7 @@ export function capitalizeString (str: string, options: { content?: 'text' | 'na
   })
 }
 
-export function capitalizeFirstLetter (str: string): string {
+export function capitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
@@ -107,7 +107,7 @@ export function camelCaseToWords(camelCase: string, { capitalize }: { capitalize
   return words
 }
 
-type TemplatePrimitiveValue = string | number
+type TemplatePrimitiveValue = string | number | null | undefined
 type TemplateFunction = (key: string, context: Record<string, TemplatePrimitiveValue | TemplateFunction>) => string
 type TemplateValue = TemplatePrimitiveValue | TemplateFunction
 const TEMPLATE_REGEX = /\{\{(.+?)\}\}/g
@@ -120,6 +120,8 @@ export function simpleTemplate(template: string, values: Record<string, Template
       return values[key].toString()
     } else if (typeof values[key] === 'string') {
       return values[key]
+    } else if (values[key] === null) {
+      return ''
     } else if (typeof values._default === 'function') {
       return values._default(key, context)
     } else {

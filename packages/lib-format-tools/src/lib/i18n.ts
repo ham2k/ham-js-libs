@@ -5,7 +5,7 @@ type TranslationFunction = (key: string | string[], fallback: string, params?: R
 export const defaultTranslationImplementation: TranslationFunction = (_key, fallback, params) => {
   params = params ?? {}
 
-  return simpleTemplate(fallback, params)
+  return simpleTemplate(fallback ?? '', params)
 }
 
 export const defaultI18N: { t: TranslationFunction } = {

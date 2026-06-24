@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-cqmag-data",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "CQ Magazine data for amateur radio contests and entities",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
@@ -16,14 +16,15 @@
     "contests"
   ],
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     }
   },
   "files": [

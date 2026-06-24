@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-operation-data",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Amateur radio basic operation data and definitions",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
@@ -16,18 +16,20 @@
     "qso"
   ],
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",

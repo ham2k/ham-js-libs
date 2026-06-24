@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-geo-tools",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "Geographic tools for amateur radio including grid squares",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {

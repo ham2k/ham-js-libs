@@ -192,7 +192,7 @@ describe('adifToQSON', () => {
     expect(qson.qsos[5].startAtMillis).toEqual(Date.parse('2024-01-01T04:00:00Z'))
     expect(qson.qsos[5].freq).toEqual(3576.37)
     expect(qson.qsos[5].band).toEqual('80m')
-    expect(qson.qsos[5].mode).toEqual('MFSK')
+    expect(qson.qsos[5].mode).toEqual('FT4')
     expect((qson.qsos[5].our as Record<string, unknown>).call).toEqual('R6YY')
     expect((qson.qsos[5].their as Record<string, unknown>).call).toEqual('F5MXH')
     expect((qson.qsos[5].their as Record<string, unknown>).dxccCode).toEqual(227)
@@ -208,20 +208,28 @@ describe('adifToQSON', () => {
 
     const qson = adifToQSON(logic)
 
-    expect(qson.qsos.length).toEqual(140)
+    expect(qson.qsos.length).toEqual(139)
 
-    expect(qson.qsos[5].startAt).toEqual('2025-01-03T18:03:20Z')
-    expect(qson.qsos[5].startAtMillis).toEqual(Date.parse('2025-01-03T18:03:20Z'))
-    expect(qson.qsos[5].freq).toEqual(28026)
+    expect(qson.qsos[5].startAt).toEqual('2025-01-03T18:15:27Z')
+    expect(qson.qsos[5].startAtMillis).toEqual(Date.parse('2025-01-03T18:15:27Z'))
+    expect(qson.qsos[5].freq).toEqual(28024)
     expect(qson.qsos[5].band).toEqual('10m')
     expect(qson.qsos[5].mode).toEqual('CW')
     expect((qson.qsos[5].our as Record<string, unknown>).call).toEqual('NU4B')
-    expect((qson.qsos[5].their as Record<string, unknown>).call).toEqual('7Q2T')
-    expect((qson.qsos[5].their as Record<string, unknown>).dxccCode).toEqual(440)
-    expect((qson.qsos[5].their as Record<string, unknown>).cqZone).toEqual(37)
-    expect((qson.qsos[5].their as Record<string, unknown>).sent).toEqual('599')
+    expect((qson.qsos[5].their as Record<string, unknown>).call).toEqual('XE2I')
+    expect((qson.qsos[5].their as Record<string, unknown>).dxccCode).toEqual(50)
+    expect((qson.qsos[5].their as Record<string, unknown>).cqZone).toEqual(6)
+    expect((qson.qsos[5].their as Record<string, unknown>).sent).toEqual('559')
 
-    expect(qson.qsos[6].startAt).toEqual('2025-01-03T18:15:27Z')
-    expect(qson.qsos[6].startAtMillis).toEqual(Date.parse('2025-01-03T18:15:27Z'))
+    expect(qson.qsos[6].startAt).toEqual('2025-01-03T20:06:45Z')
+    expect(qson.qsos[6].startAtMillis).toEqual(Date.parse('2025-01-03T20:06:45Z'))
+  })
+
+  it('should work with Station Master Pro files', () => {
+    const stationmasterpro = fs.readFileSync('src/lib/samples/ve9cf-smp.adi', 'ascii')
+
+    const qson = adifToQSON(stationmasterpro)
+
+    expect(qson.qsos.length).toEqual(89)
   })
 })

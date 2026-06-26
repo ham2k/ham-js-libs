@@ -41,23 +41,23 @@ function parseADIF(str: string, options: AdifToQsonOptions = {}): Omit<QSONFromA
   const errors: Qso[] = []
 
   let qsoCount = 0
-  ;(adif.records ?? []).forEach((adifQSO) => {
-    Object.keys(adifQSO).forEach((key) => {
-      adifQSO[key] = decode(adifQSO[key])
-    })
-    const qso = parseAdifQSO(adifQSO, options)
-    if (qso) {
-      qsoCount++
-      qso._number = qsoCount
-      if (options.source) qso._source = options.source + ':qso-' + qsoCount
+    ; (adif.records ?? []).forEach((adifQSO) => {
+      Object.keys(adifQSO).forEach((key) => {
+        adifQSO[key] = decode(adifQSO[key])
+      })
+      const qso = parseAdifQSO(adifQSO, options)
+      if (qso) {
+        qsoCount++
+        qso._number = qsoCount
+        if (options.source) qso._source = options.source + ':qso-' + qsoCount
 
-      if (qso._error) {
-        errors.push(qso)
-      } else {
-        qsos.push(qso)
+        if (qso._error) {
+          errors.push(qso)
+        } else {
+          qsos.push(qso)
+        }
       }
-    }
-  })
+    })
 
   qsos.sort((a, b) => {
     if ((a.startAtMillis as number | undefined || 0) !== (b.startAtMillis as number | undefined || 0)) {
@@ -75,7 +75,7 @@ function parseADIF(str: string, options: AdifToQsonOptions = {}): Omit<QSONFromA
   }
 }
 
-function condSet (
+function condSet(
   src: Record<string, string>,
   dest: Record<string, unknown>,
   field: string,
@@ -91,10 +91,13 @@ function condSet (
 
 const REGEXP_FOR_EOH = /<BR>(?=(.*)<EOH>)/gi
 const REGEXP_FOR_MIXW_BAD_ADIF = /<(PROGRAMID|PROGRAMVERSION)>(.+)([\n\r]+)/gi
+const REGEXP_FOR_STATIONMASTERPRO_BAD_ADIF = /<ADIF .+?>/gi
 
 function cleanupBadADIF(str: string): string {
   str = str.replaceAll(REGEXP_FOR_EOH, '')
   str = str.replaceAll(REGEXP_FOR_MIXW_BAD_ADIF, (match, p1: string, p2: string, p3: string) => `<${p1}:${p2.length}>${p2}${p3}`)
+  if (str.startsWith('<ADIF ')) str = str.replace(REGEXP_FOR_STATIONMASTERPRO_BAD_ADIF, '')
+
   return str
 }
 
@@ -131,7 +134,7 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
       const rx = parseFrequency(adifQSO.freq_rx)
       if (rx !== qso.freq) {
         (qso.their as Record<string, unknown>).freq = parseFrequency(adifQSO.freq_rx)
-        ;(qso.their as Record<string, unknown>).band = adifQSO.band_rx || bandForFrequency(frequencyHzForBand((qso.their as Record<string, unknown>).freq as number | string | undefined))
+          ; (qso.their as Record<string, unknown>).band = adifQSO.band_rx || bandForFrequency(frequencyHzForBand((qso.their as Record<string, unknown>).freq as number | string | undefined))
       }
     }
 
@@ -210,7 +213,7 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
     // QSL Information
     if (adifQSO.app_qrzlog_qsldate) {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).qrz = { received: true }
+        ; (qso.qsl as Record<string, unknown>).qrz = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).qrz, 'app_qrzlog_logid', 'id')
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).qrz, 'app_qrzlog_qsldate', 'receivedOn', adifDateToISO)
     }
@@ -218,35 +221,35 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
     if (adifQSO.lotw_qslrdate) {
       // QRZ ADIF includes LOTW dates
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).lotw = { received: true }
+        ; (qso.qsl as Record<string, unknown>).lotw = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).lotw, 'lotw_qslrdate', 'receivedOn', adifDateToISO)
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).lotw, 'lotw_qslsdate', 'sentOn', adifDateToISO)
     } else if (adifQSO.app_lotw_rxqsl) {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).lotw = { received: true }
+        ; (qso.qsl as Record<string, unknown>).lotw = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).lotw, 'app_qrzlog_logid', 'id')
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).lotw, 'app_lotw_rxqsl', 'receivedOn', (x) => x.replace(/(\d+) (\d+):/, '$1T$2:') + 'Z')
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).lotw, 'app_lotw_rxqso', 'sentOn', (x) => x.replace(/(\d+) (\d+):/, '$1T$2:') + 'Z')
     } else if (adifQSO.lotw_qsl_rcvd === 'Y') {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).lotw = { received: true }
+        ; (qso.qsl as Record<string, unknown>).lotw = { received: true }
     }
 
     if (adifQSO.eqsl_qsl_rcvd === 'Y') {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).eqsl = { received: true }
+        ; (qso.qsl as Record<string, unknown>).eqsl = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).eqsl, 'eqsl_qsl_rdate', 'receivedOn', adifDateToISO)
     }
 
     if (adifQSO.app_dxkeeper_clublog_qsl_rcvd === 'Y') {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).clublog = { received: true }
+        ; (qso.qsl as Record<string, unknown>).clublog = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).clublog, 'app_dxkeeper_clublog_qslrdate', 'receivedOn', adifDateToISO)
     }
 
     if (adifQSO.qsl_rcvd === 'Y' && options.genericQSL) {
       qso.qsl = qso.qsl ?? {}
-      ;(qso.qsl as Record<string, unknown>).qsl = { received: true }
+        ; (qso.qsl as Record<string, unknown>).qsl = { received: true }
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).qsl, 'qslrdate', 'receivedOn', adifDateToISO)
       condSet(adifQSO, (qso.qsl as Record<string, Record<string, unknown>>).qsl, 'qslsdate', 'sentOn', adifDateToISO)
     }
@@ -267,29 +270,29 @@ function parseAdifQSO(adifQSO: Record<string, string>, options: AdifToQsonOption
     // References
     if (adifQSO.contest_id) {
       qso.refs = qso.refs ?? []
-      ;(qso.refs as unknown[]).push({ type: 'contest', ref: adifQSO.contest_id })
+        ; (qso.refs as unknown[]).push({ type: 'contest', ref: adifQSO.contest_id })
     }
 
     if (adifQSO.iota) {
       qso.refs = qso.refs ?? []
       const ref: Record<string, unknown> = { type: 'iota', ref: adifQSO.iota }
       condSet(adifQSO, ref, 'iota_island_id', 'island')
-      ;(qso.refs as unknown[]).push(ref)
+        ; (qso.refs as unknown[]).push(ref)
     }
     if (adifQSO.my_iota) {
       qso.refs = qso.refs ?? []
       const ref: Record<string, unknown> = { type: 'iotaActivation', ref: adifQSO.my_iota }
       condSet(adifQSO, ref, 'my_iota_island_id', 'island')
-      ;(qso.refs as unknown[]).push(ref)
+        ; (qso.refs as unknown[]).push(ref)
     }
 
     if (adifQSO.sota) {
       qso.refs = qso.refs ?? []
-      ;(qso.refs as unknown[]).push({ type: 'sota', ref: adifQSO.sota })
+        ; (qso.refs as unknown[]).push({ type: 'sota', ref: adifQSO.sota })
     }
     if (adifQSO.my_sota) {
       qso.refs = qso.refs ?? []
-      ;(qso.refs as unknown[]).push({ type: 'sotaActivation', ref: adifQSO.my_sota })
+        ; (qso.refs as unknown[]).push({ type: 'sotaActivation', ref: adifQSO.my_sota })
     }
 
     if (adifQSO.sig || adifQSO.sig_intl || adifQSO.my_sig || adifQSO.my_sig_intl) {

@@ -24,6 +24,7 @@ export type CallInfo = {
   matchNote?: string
 
   // Related to location
+  locationScope?: "qth" | "prefixed" | "portable"
   locSource?: string
   lat?: number
   lon?: number
@@ -38,8 +39,18 @@ export type CallInfo = {
 
   exchange?: string
   sent?: string
+}
 
+export type CallInfoLookup = CallInfo & {
+  source?: String
+  scope?: "general" | "operation" | "qso"
+  notes?: String[]
+  history?: QSON[]
+}
+
+export type AnnotatedCallInfo = CallInfo & {
   guess?: CallInfo
+  lookups?: CallInfoLookup[]
 }
 
 export type RefInfo = {
@@ -63,8 +74,8 @@ export type EventInfo = {
 export type QSON = {
   uuid?: string
   event?: EventInfo
-  our: CallInfo
-  their: CallInfo
+  our: AnnotatedCallInfo
+  their: AnnotatedCallInfo
   freq: number
   band: string
   mode: string

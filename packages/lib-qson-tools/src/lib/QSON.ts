@@ -24,11 +24,12 @@ export type CallInfo = {
   matchNote?: string
 
   // Related to location
-  locationScope?: "qth" | "prefixed" | "portable"
-  locSource?: string
+  location?: String
   lat?: number
   lon?: number
   grid?: string
+  locSource?: string
+  locationScope?: "qth" | "prefixed" | "portable"
 
   // Other common attributes
   name?: string

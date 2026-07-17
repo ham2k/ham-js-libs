@@ -496,3 +496,24 @@ export function fmtDateTimeNiceRange(t1: FlexibleTimeValue, t2: FlexibleTimeValu
   }
 }
 
+export function fmtDateTime(t: FlexibleTimeValue, options?: Intl.DateTimeFormatOptions): string {
+  const d = prepareDateValue(t)
+  if (d) {
+    const formatter = new Intl.DateTimeFormat('en-US', options)
+    return formatter.format(d)
+  }
+  return ''
+}
+
+export function dateFormatterGenerator(formatName: string, options?: Intl.DateTimeFormatOptions) {
+  const predefined: Record<string, Intl.DateTimeFormatOptions> = {
+    dayMonth: { day: 'numeric', month: 'short' }
+  }
+  const mergedOptions = { ...predefined[formatName], ...options }
+  return (t: FlexibleTimeValue) => fmtDateTime(t, mergedOptions)
+}
+
+export function fmtDateTimeISO(t: FlexibleTimeValue): string {
+  return fmtISODateTime(t)
+}
+

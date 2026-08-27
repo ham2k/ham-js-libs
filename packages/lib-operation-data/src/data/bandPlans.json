@@ -65,7 +65,8 @@
         { "name": "Data", "mhz": [10130, 10140], "mode": "RTTY" },
         { "name": "FT8", "mhz": [10136, 10139], "mode": "FT8", "priority": 100 },
         { "name": "FT4", "mhz": [10140, 10143], "mode": "FT4", "priority": 100 },
-        { "name": "Out of band", "mhz": [10100, 10150], "mode": false, "countries": ["au", "za"] }
+        { "name": "Australia & New Zealand", "mhz": [10100, 10150], "mode": null, "countries": ["au", "nz"] },
+        { "name": "Africa south of the Equator", "mhz": [10100, 10150], "mode": null, "countries": [["ao","bi","bw","cd","cg","ga","ke","km","ls","mg","mu","mw","mz","na","rw","sc","so","st","sz","tz","ug","za","zm","zw"]] }
       ]
     },
     "20m": {

@@ -11,7 +11,7 @@
     "160m": {
       "mhz": [1800, 2000],
       "segments": [
-        { "name": "Out of band Reg1", "mhz": [1800, 2000], "mode": false, "regions": [ 1 ] },
+        { "name": "Out of band Reg1", "mhz": [1800, 1810], "mode": false, "regions": [ 1 ] },
         { "name": "CW Reg1", "mhz": [1810, 1838], "mode": "CW", "regions": [ 1 ] },        { "name": "Data", "mhz": [1800, 1810], "mode": "RTTY" },
         { "name": "CW", "mhz": [1800, 1843], "mode": "CW" },
         { "name": "FT8", "mhz": [1840, 1843], "mode": "FT8", "priority": 100 },

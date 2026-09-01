@@ -4,6 +4,7 @@ describe('Callsign Parsing', () => {
   describe('processPrefix', () => {
     it('should parse a full callsign', () => {
       expect(processPrefix('N0CALL')).toEqual({
+        call: '',
         prefix: 'N0',
         ituPrefix: 'N',
         digit: '0'
@@ -12,6 +13,7 @@ describe('Callsign Parsing', () => {
 
     it('should parse a lone prefix', () => {
       expect(processPrefix('N0')).toEqual({
+        call: '',
         prefix: 'N0',
         ituPrefix: 'N',
         digit: '0'
@@ -20,6 +22,7 @@ describe('Callsign Parsing', () => {
 
     it('should parse a prefix without a digit', () => {
       expect(processPrefix('N')).toEqual({
+        call: '',
         prefix: 'N',
         ituPrefix: 'N',
         digit: ''
@@ -33,11 +36,13 @@ describe('Callsign Parsing', () => {
 
     it('should handle one character prefixes', () => {
       expect(processPrefix('K1')).toEqual({
+        call: '',
         prefix: 'K1',
         ituPrefix: 'K',
         digit: '1'
       })
       expect(processPrefix('M5UK')).toEqual({
+        call: '',
         prefix: 'M5',
         ituPrefix: 'M',
         digit: '5'
@@ -46,21 +51,25 @@ describe('Callsign Parsing', () => {
 
     it('should handle two character prefixes', () => {
       expect(processPrefix('KD2')).toEqual({
+        call: '',
         prefix: 'KD2',
         ituPrefix: 'KD',
         digit: '2'
       })
       expect(processPrefix('AA2AA')).toEqual({
+        call: '',
         prefix: 'AA2',
         ituPrefix: 'AA',
         digit: '2'
       })
       expect(processPrefix('YV5BCS')).toEqual({
+        call: '',
         prefix: 'YV5',
         ituPrefix: 'YV',
         digit: '5'
       })
       expect(processPrefix('4U1U')).toEqual({
+        call: '',
         prefix: '4U1U',
         ituPrefix: '4U',
         digit: '1'
@@ -69,11 +78,13 @@ describe('Callsign Parsing', () => {
 
     it('should handle two character prefixes ending in digits', () => {
       expect(processPrefix('V33')).toEqual({
+        call: '',
         prefix: 'V33',
         ituPrefix: 'V3',
         digit: '3'
       })
       expect(processPrefix('V33XX')).toEqual({
+        call: '',
         prefix: 'V33',
         ituPrefix: 'V3',
         digit: '3'
@@ -82,11 +93,13 @@ describe('Callsign Parsing', () => {
 
     it('should handle two character prefixes ending in digits and no separator digit', () => {
       expect(processPrefix('V3XX')).toEqual({
+        call: '',
         prefix: 'V3',
         ituPrefix: 'V3',
         digit: ''
       })
       expect(processPrefix('D9K')).toEqual({
+        call: '',
         prefix: 'D9',
         ituPrefix: 'D9',
         digit: ''
@@ -95,11 +108,13 @@ describe('Callsign Parsing', () => {
 
     it('should handle three character prefixes', () => {
       expect(processPrefix('3DA1A')).toEqual({
+        call: '',
         prefix: '3DA1',
         ituPrefix: '3DA',
         digit: '1'
       })
       expect(processPrefix('5UA99WS')).toEqual({
+        call: '',
         prefix: '5UA9',
         extendedPrefix: '5UA99',
         ituPrefix: '5U',
@@ -109,6 +124,7 @@ describe('Callsign Parsing', () => {
 
     it('should handle the special case of Fiji using 3D2 as a prefix', () => {
       expect(processPrefix('3D2A')).toEqual({
+        call: '',
         prefix: '3D2',
         ituPrefix: '3D2',
         digit: ''
@@ -603,14 +619,11 @@ describe('Callsign Parsing', () => {
     })
 
     it('should recognize bad callsigns', () => {
-      expect(parseCallsign('N0')).toEqual({})
-      expect(parseCallsign('N0')).toEqual({})
-      expect(parseCallsign('0N')).toEqual({})
-      expect(parseCallsign('10N')).toEqual({})
-      expect(parseCallsign('10N0')).toEqual({})
-      expect(parseCallsign('10N0N')).toEqual({})
-      expect(parseCallsign('0N/KL7')).toEqual({})
-      expect(parseCallsign('YV5/N0/KL7')).toEqual({})
+      // `call` is always present, so a rejected callsign is one that parsed
+      // into nothing else: no baseCall, no prefix.
+      for (const bad of ['N0', '0N', '10N', '10N0', '10N0N', '0N/KL7', 'YV5/N0/KL7']) {
+        expect(parseCallsign(bad)).toEqual({ call: '' })
+      }
     })
 
     it('accepts some callsigns that have trailing numbers', () => {

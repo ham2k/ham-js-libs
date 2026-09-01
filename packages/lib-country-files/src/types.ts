@@ -34,7 +34,12 @@ export interface CFIndexes {
   exactWAE: Record<string, CFMatch>
 }
 
-export type CombinedCallInfo = ParsedCallsign & {
+// `call` is optional here, unlike on ParsedCallsign: these types describe both the
+// partial info passed *into* annotation — which may identify an entity by dxccCode or
+// entityPrefix alone, with no callsign at all — and the entity/zone/location fields
+// analyzeFromCountryFile returns, which never include a callsign.
+export type CombinedCallInfo = Omit<ParsedCallsign, 'call'> & {
+  call?: string
   isoPrefix?: string
   dxccCode?: number
   regionCode?: string

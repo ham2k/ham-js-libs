@@ -16,5 +16,5 @@ export const ARRL_DIVISIONS: Record<string, ARRLDivision> = {
   SE: { code: 'SE', name: 'Southeastern', countryCode: 'US', sectionCodes: ['AL', 'GA', 'NFL', 'PR', 'SFL', 'VI', 'WCF'] },
   SW: { code: 'SW', name: 'Southwestern', countryCode: 'US', sectionCodes: ['AZ', 'LAX', 'ORG', 'SB', 'SDG'] },
   WG: { code: 'WG', name: 'West Gulf', countryCode: 'US', sectionCodes: ['NTX', 'OK', 'STX', 'WTX'] },
-  CAN: { code: 'CAN', name: 'Canada', countryCode: 'CA', sectionCodes: ['AB', 'BC', 'GTA', 'MAR', 'MB', 'NL', 'ONE', 'ONN', 'ONS', 'QC', 'SK', 'TER'] }
+  CAN: { code: 'CAN', name: 'Canada', countryCode: 'CA', sectionCodes: ['AB', 'BC', 'GH', 'MB', 'NB', 'NL', 'NS', 'ONE', 'ONN', 'ONS', 'PE', 'QC', 'SK', 'TER'] }
 }

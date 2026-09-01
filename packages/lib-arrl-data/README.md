@@ -36,7 +36,7 @@ const { findSection } = require('@ham2k/lib-arrl-data')
 - `findSection(state, county?)` — the `ARRLSection` for a state or province, or `null`
 - `findSectionCode(state, county?)` — the same, as a section code string
 - `sectionsForState(state)` — every section covering any part of a state or province
-- `ARRL_SECTIONS` — all 71 US and 12 Canadian sections, keyed by code
+- `ARRL_SECTIONS` — all 71 US and 14 Canadian sections, keyed by code
 - `ARRL_DIVISIONS` — all 16 divisions, keyed by code
 - `SECTIONS_FOR_STATES` — the raw state → section (or county → section) table
 
@@ -50,7 +50,7 @@ County names are matched loosely: case, punctuation, whitespace and `County` / `
 `Borough` suffixes are ignored, and `St.` is treated as `Saint`.
 
 Ontario has no county mapping (see below), so `findSection('ON')` returns `null` even
-though `ARRL_SECTIONS` includes its four sections.
+though `ARRL_SECTIONS` includes its four sections (`GH`, `ONE`, `ONN`, `ONS`).
 
 ## Data
 

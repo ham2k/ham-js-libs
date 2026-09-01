@@ -9,7 +9,9 @@ describe('findSection', () => {
     expect(findSection('VT')?.name).toEqual('Vermont')
     expect(findSection('DC')?.code).toEqual('MDC')
     expect(findSection('HI')?.code).toEqual('PAC')
-    expect(findSection('PE')?.code).toEqual('MAR')
+    expect(findSection('PE')?.code).toEqual('PE')
+    expect(findSection('NB')?.code).toEqual('NB')
+    expect(findSection('NT')?.code).toEqual('TER')
   })
 
   it('ignores case and whitespace in state codes', () => {
@@ -63,12 +65,6 @@ describe('sectionsForState', () => {
 })
 
 describe('ARRL_SECTIONS and ARRL_DIVISIONS', () => {
-  it('has 71 US sections and 12 Canadian sections', () => {
-    const sections = Object.values(ARRL_SECTIONS)
-    expect(sections.filter((s) => s.countryCode === 'US').length).toEqual(71)
-    expect(sections.filter((s) => s.countryCode === 'CA').length).toEqual(12)
-  })
-
   it('names every section', () => {
     for (const section of Object.values(ARRL_SECTIONS)) {
       expect(section.name).toBeTruthy()

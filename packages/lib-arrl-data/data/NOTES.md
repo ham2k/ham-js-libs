@@ -14,13 +14,29 @@ NY 62, PA 67, TX 254, WA 39.
 
 ## Canadian and territorial codes
 
-The contributed table mapped several provinces and territories to their postal codes
+The contributed table mapped some provinces and territories to their postal codes
 rather than to ARRL/RAC section codes. Corrected to actual sections:
 
-- **NB**, **NS** → `MAR` (Maritime), joining **PE** which was already correct.
-- **NT**, **NU**, **YT** → `TER` (Territories).
-- **GU** → `PAC` (Guam is part of the Pacific section).
-- **ON** → removed. Ontario holds four sections (`GTA`, `ONE`, `ONN`, `ONS`) and the
+- **NT**, **NU**, **YT** -> `TER` (Territories, formerly NT).
+- **GU** -> `PAC` (Guam is part of the Pacific section).
+- **ON** -> removed. Ontario holds four sections (`GH`, `ONE`, `ONN`, `ONS`) and the
   contributed table had no district-level data to split them, so `findSection('ON')`
-  returns `null` rather than an invented answer. Adding an Ontario county/district
-  mapping is the main open item for this data set.
+  returns `null` rather than an invented answer. The boundaries are defined by county
+  and regional municipality, not postal code, so they fit this table's shape; adding
+  them is the main open item for this data set.
+
+**NB** and **NS** were left exactly as contributed. An earlier version of this file
+mapped them to a `MAR` (Maritime) section and claimed the table was wrong; that was
+backwards. Maritime was split into separate New Brunswick, Nova Scotia and Prince
+Edward Island sections, so the contributed `NB` and `NS` were correct and only the
+table's `PE -> MAR` was stale. `PE` now maps to `PE`.
+
+## Keeping the section list honest
+
+Section codes change. `GTA` became `GH` (Golden Horseshoe) on 1 January 2023, and
+Maritime split into `NB`/`NS`/`PE`; both were initially wrong here because they were
+written from memory. `src/data/officialSections.spec.ts` now holds the section list
+transcribed from ARRL's published abbreviation list and fails if the data drifts from
+it. When ARRL publishes a new list, update that spec first, then the data.
+
+Source: [ARRL / RAC Section Abbreviation List, updated 6/2024](https://www.arrl.org/files/file/Field-Day/2024/4_35-ARRL-RAC%20Section%20List.pdf)

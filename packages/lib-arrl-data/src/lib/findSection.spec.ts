@@ -55,6 +55,40 @@ describe('findSection', () => {
   })
 })
 
+describe('Ontario', () => {
+  it('finds the four Ontario sections by census division', () => {
+    expect(findSectionCode('ON', 'Toronto')).toEqual('GH')
+    expect(findSectionCode('ON', 'Peel')).toEqual('GH')
+    expect(findSectionCode('ON', 'Hamilton')).toEqual('GH')
+    expect(findSectionCode('ON', 'Niagara')).toEqual('GH')
+    expect(findSectionCode('ON', 'Ottawa')).toEqual('ONE')
+    expect(findSectionCode('ON', 'Renfrew')).toEqual('ONE')
+    expect(findSectionCode('ON', 'Thunder Bay')).toEqual('ONN')
+    expect(findSectionCode('ON', 'Greater Sudbury')).toEqual('ONN')
+    expect(findSectionCode('ON', 'Essex')).toEqual('ONS')
+    expect(findSectionCode('ON', 'Parry Sound')).toEqual('ONS')
+  })
+
+  it('matches compound names written with "and" or "&"', () => {
+    expect(findSectionCode('ON', 'Leeds and Grenville')).toEqual('ONE')
+    expect(findSectionCode('ON', 'Leeds & Grenville')).toEqual('ONE')
+    expect(findSectionCode('ON', 'Stormont, Dundas & Glengarry')).toEqual('ONE')
+    expect(findSectionCode('ON', 'Lennox & Addington')).toEqual('ONE')
+  })
+
+  it('recognizes the places RAC names directly', () => {
+    expect(findSectionCode('ON', 'Burlington')).toEqual('GH')
+    expect(findSectionCode('ON', 'North Bay')).toEqual('ONN')
+    expect(findSectionCode('ON', 'Killarney')).toEqual('ONN')
+    expect(findSectionCode('ON', 'Algonquin Park')).toEqual('ONE')
+  })
+
+  it('still needs a division for Ontario', () => {
+    expect(findSection('ON')).toBeNull()
+    expect(sectionsForState('ON').map((s) => s.code)).toEqual(['GH', 'ONE', 'ONN', 'ONS'])
+  })
+})
+
 describe('sectionsForState', () => {
   it('lists every section covering a state', () => {
     expect(sectionsForState('MA').map((s) => s.code)).toEqual(['EMA', 'WMA'])

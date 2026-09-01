@@ -4,12 +4,17 @@ import { SECTIONS_FOR_STATES } from '../data/sectionsForStates.js'
 
 /**
  * Normalizes a county name for matching: case, punctuation, whitespace and the
- * usual "County"/"Parish"/"Borough" suffixes are all ignored, and "St."/"Ste."
- * are expanded, so "St. Lawrence", "saint lawrence county" and "STLAWRENCE" all match.
+ * usual "County"/"Parish"/"Borough" suffixes are all ignored, "St."/"Ste." are
+ * expanded and "&" is read as "and", so "St. Lawrence", "saint lawrence county"
+ * and "STLAWRENCE" all match, as do "Leeds & Grenville" and "Leeds and Grenville".
+ *
+ * The "&" rule matters for Ontario, where several census divisions have compound
+ * names people write both ways.
  */
 function normalizeCounty (county: string): string {
   return county
     .toLowerCase()
+    .replace(/&/g, 'and')
     .replace(/\bst[e]?\.?\s+/g, (match) => (match.trim().startsWith('ste') ? 'sainte' : 'saint'))
     .replace(/\b(county|parish|borough|census area|city and borough|municipality)\b/g, '')
     .replace(/[^a-z0-9]/g, '')

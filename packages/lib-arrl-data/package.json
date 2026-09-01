@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-arrl-data",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "ARRL data for amateur radio: sections, divisions and section lookup by state and county",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {

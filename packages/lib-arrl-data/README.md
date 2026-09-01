@@ -49,8 +49,10 @@ recognized, the result is `null`. Use `sectionsForState` to list the candidates 
 County names are matched loosely: case, punctuation, whitespace and `County` / `Parish` /
 `Borough` suffixes are ignored, and `St.` is treated as `Saint`.
 
-Ontario has no county mapping (see below), so `findSection('ON')` returns `null` even
-though `ARRL_SECTIONS` includes its four sections (`GH`, `ONE`, `ONN`, `ONS`).
+Ontario is keyed on census divisions — counties, districts, regional municipalities
+and single-tier cities — since that is how RAC defines its four sections. Two of them,
+Muskoka and Kawartha Lakes, RAC does not name at all and are assigned by elimination;
+see [data/NOTES.md](./data/NOTES.md).
 
 ## Data
 

@@ -1,0 +1,60 @@
+{
+  "name": "@ham2k/lib-arrl-data",
+  "version": "1.0.0",
+  "description": "ARRL data for amateur radio: sections, divisions and section lookup by state and county",
+  "author": "Sebastian Delmont <sd@ham2k.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ham2k/ham-js-libs.git"
+  },
+  "homepage": "https://github.com/ham2k/ham-js-libs/tree/main/packages/lib-arrl-data",
+  "license": "MIT",
+  "keywords": [
+    "amateur radio",
+    "ham radio",
+    "arrl",
+    "sections",
+    "divisions",
+    "contests"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src/data/*.json",
+    "data/*.json"
+  ],
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "jest": "^30",
+    "standard": "^17",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "tsup",
+    "generate": "tsx scripts/generate.ts",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}

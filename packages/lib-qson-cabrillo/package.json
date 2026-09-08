@@ -1,7 +1,7 @@
 {
   "name": "@ham2k/lib-qson-cabrillo",
-  "version": "1.1.0",
-  "description": "Cabrillo format support for QSON amateur radio QSO data",
+  "version": "1.2.0",
+  "description": "Cabrillo format support for QSON amateur radio QSO data: reader and writer",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
     "type": "git",
@@ -19,8 +19,9 @@
   ],
   "type": "module",
   "dependencies": {
-    "camelcase": "^8.0",
-    "@ham2k/lib-operation-data": "^1.0.0"
+    "@ham2k/lib-format-tools": "^1.2.0",
+    "@ham2k/lib-operation-data": "^1.0.0",
+    "camelcase": "^8.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",

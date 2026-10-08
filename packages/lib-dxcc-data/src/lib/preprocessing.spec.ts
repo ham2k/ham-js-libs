@@ -72,3 +72,17 @@ describe('preprocessDXCCData', () => {
   })
 })
 
+
+// The generated tables take their centroids and offsets from the country file
+// through lib-country-files, which states both with the ordinary sign. Negating
+// either here again would put Canada in Central Asia, or read its offset as
+// five hours ahead.
+describe('generated DXCC data signs', () => {
+  it('states longitude east-positive and the UTC offset with its ordinary sign', async () => {
+    const { DXCC_BY_PREFIX } = await import('../data/dxccByPrefix')
+    expect(DXCC_BY_PREFIX.VE.lon).toEqual(-78.75)
+    expect(DXCC_BY_PREFIX.VE.tz).toEqual('GMT-5')
+    expect(DXCC_BY_PREFIX.JA.lon).toEqual(138.8)
+    expect(DXCC_BY_PREFIX.JA.tz).toEqual('GMT+9')
+  })
+})

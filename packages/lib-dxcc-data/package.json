@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-dxcc-data",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "DXCC entity data for amateur radio",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
@@ -20,7 +20,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "devDependencies": {
-    "@ham2k/lib-country-files": "~0.12",
+    "@ham2k/lib-country-files": "^1.1.20260530",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
     "csv": "~6",

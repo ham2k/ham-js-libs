@@ -38,11 +38,15 @@ export function parseCountryFile(data: string): CFIndexes {
         cqZone: Number.parseInt(lineParts[4]),
         ituZone: Number.parseInt(lineParts[5]),
         lat: Number.parseFloat(lineParts[6]),
-        lon: Number.parseFloat(lineParts[7]),
+        // The country file states longitude and UTC offset west-positive;
+        // both are flipped to the ordinary sign. `0 -` rather than a unary
+        // minus, so a zero stays a plain 0 and never becomes -0.
+        lon: 0 - Number.parseFloat(lineParts[7]),
         tz: ''
       }
 
-      const offset = Number.parseFloat(lineParts[8])
+      // "GMT-5" is five hours behind UTC.
+      const offset = 0 - Number.parseFloat(lineParts[8])
       entity.tz = offset > 0 ? `GMT+${offset}` : `GMT${offset}`
 
       if (entity.entityPrefix.charAt(0) === '*') {

@@ -16,8 +16,6 @@ Object.values(dxcc).forEach((entity: DXCCEntity) => {
   if (locationOverrides[entity.entityPrefix]) {
     entity.lat = locationOverrides[entity.entityPrefix][1]
     entity.lon = locationOverrides[entity.entityPrefix][0]
-  } else if (entity.lat && entity.lon) {
-    entity.lon = -entity.lon
   }
 })
 

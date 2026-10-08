@@ -1,6 +1,6 @@
 {
   "name": "@ham2k/lib-cqmag-data",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "CQ Magazine data for amateur radio contests and entities",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
@@ -34,7 +34,7 @@
   ],
   "devDependencies": {
     "@ham2k/lib-country-files": "^1.1.20260530",
-    "@ham2k/lib-dxcc-data": "^1.1.0",
+    "@ham2k/lib-dxcc-data": "^1.1.1",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
     "jest": "^30",

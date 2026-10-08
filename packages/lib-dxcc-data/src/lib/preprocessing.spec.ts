@@ -86,3 +86,14 @@ describe('generated DXCC data signs', () => {
     expect(DXCC_BY_PREFIX.JA.tz).toEqual('GMT+9')
   })
 })
+
+// Each entity's centroid is its own: a location override copied from a
+// neighbouring entity puts the station in the wrong country on a map, with
+// nothing downstream to notice.
+describe('generated DXCC centroids', () => {
+  it('places Monaco and Kerguelen where they are', async () => {
+    const { DXCC_BY_PREFIX } = await import('../data/dxccByPrefix')
+    expect([DXCC_BY_PREFIX['3A'].lat, DXCC_BY_PREFIX['3A'].lon]).toEqual([43.7, 7.4])
+    expect([DXCC_BY_PREFIX['FT/x'].lat, DXCC_BY_PREFIX['FT/x'].lon]).toEqual([-49, 69.3])
+  })
+})

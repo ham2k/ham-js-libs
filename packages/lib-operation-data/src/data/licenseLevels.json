@@ -1,0 +1,490 @@
+{
+  "jurisdictions": [
+    {
+      "key": "ar",
+      "name": "Argentina",
+      "regulator": "ENACOM",
+      "rules": "Resolución ENACOM 3635-E/2017 (Reglamento General de Radioaficionados, Anexo A band plan) as amended by Res. ENACOM 1186/2024",
+      "term": "License Category",
+      "termLocal": "categoría",
+      "entities": ["LU"],
+      "levels": [
+        {"code": "N", "name": "Novice", "nameLocal": "Novicio", "tier": "intermediate", "aliases": ["Inicial"], "maxPowerW": 200},
+        {"code": "G", "name": "General", "tier": "intermediate", "aliases": ["Intermedia"], "maxPowerW": 1000},
+        {"code": "S", "name": "Superior", "tier": "full", "maxPowerW": 1500},
+        {"code": "E", "name": "Special", "nameLocal": "Especial", "tier": "full", "maxPowerW": 1500}
+      ]
+    },
+    {
+      "key": "at",
+      "name": "Austria",
+      "regulator": "Fernmeldebüros (Fernmeldebehörde, Bundesministerium für Finanzen)",
+      "term": "License Class",
+      "termLocal": "Bewilligungsklasse",
+      "entities": ["OE"],
+      "levels": [
+        {"code": "3", "name": "Class 3", "nameLocal": "Bewilligungsklasse 3", "tier": "basic", "maxPowerW": 100},
+        {"code": "4", "name": "Class 4", "nameLocal": "Bewilligungsklasse 4", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "1", "name": "Class 1", "nameLocal": "Bewilligungsklasse 1", "tier": "full", "maxPowerW": 1000}
+      ]
+    },
+    {
+      "key": "au",
+      "name": "Australia",
+      "regulator": "ACMA",
+      "term": "Licence Level",
+      "termLocal": "qualification",
+      "entities": ["VK", "VK9X", "VK9C", "VK9N", "VK9L", "VK9W", "VK9M", "VK0H", "VK0M"],
+      "levels": [
+        {"code": "F", "name": "Foundation", "nameLocal": "ACMA recognition certificate (Foundation)", "tier": "intermediate", "maxPowerW": 10},
+        {"code": "S", "name": "Standard", "nameLocal": "ACMA recognition certificate (Standard)", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "Advanced", "nameLocal": "ACMA recognition certificate (Advanced)", "tier": "full", "maxPowerW": 400}
+      ],
+      "callsigns": [
+        {"pattern": "^VK[0-9][A-Z]{2}$", "level": "A", "entities": ["VK"]}
+      ]
+    },
+    {
+      "key": "be",
+      "name": "Belgium",
+      "regulator": "BIPT/IBPT",
+      "term": "Licence Class",
+      "termLocal": "certificat d'opérateur de classe A/B/C",
+      "entities": ["ON"],
+      "levels": [
+        {"code": "C", "name": "Entry (Basic)", "nameLocal": "Certificat d'opérateur de classe C (ex licence de base)", "tier": "intermediate", "maxPowerW": 25},
+        {"code": "B", "name": "Novice", "nameLocal": "Certificat d'opérateur de classe B", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "HAREC", "nameLocal": "Certificat d'opérateur de classe A (ex certificat HAREC)", "tier": "full", "maxPowerW": 1500}
+      ],
+      "callsigns": [
+        {"pattern": "^ON3[A-Z]{2,3}$", "level": "C"},
+        {"pattern": "^ON2[A-Z]{2,3}$", "level": "B", "atLeast": true},
+        {"pattern": "^ON[14-9][A-Z]{1,3}$", "level": "A"}
+      ]
+    },
+    {
+      "key": "bg",
+      "name": "Bulgaria",
+      "regulator": "CRC (Комисия за регулиране на съобщенията)",
+      "term": "License Class",
+      "termLocal": "радиолюбителски клас",
+      "entities": ["LZ"],
+      "levels": [
+        {"code": "2", "name": "Class 2", "nameLocal": "Клас 2", "tier": "basic", "maxPowerW": 5, "superModes": ["PHONE", "DATA"]},
+        {"code": "1", "name": "Class 1", "nameLocal": "Клас 1", "tier": "full", "maxPowerW": 350}
+      ],
+      "callsigns": [
+        {"pattern": "^LZ[0-9][A-Z]{2}$", "level": "1"}
+      ]
+    },
+    {
+      "key": "br",
+      "name": "Brazil",
+      "regulator": "Anatel",
+      "rules": "Res. Anatel 777/2025 (RGST) Art. 277 (classes); Ato SOR 926/2024 (bands/power by class); Ato 3448/2026 (operations, exams, callsigns)",
+      "term": "License Class",
+      "termLocal": "classe",
+      "entities": ["PY", "PY0F", "PY0S", "PY0T"],
+      "levels": [
+        {"code": "C", "name": "Class C", "nameLocal": "Classe C", "tier": "intermediate", "aliases": ["Classe D"], "maxPowerW": 100},
+        {"code": "B", "name": "Class B", "nameLocal": "Classe B", "tier": "intermediate", "maxPowerW": 1000},
+        {"code": "A", "name": "Class A", "nameLocal": "Classe A", "tier": "full", "maxPowerW": 1500}
+      ],
+      "callsigns": [
+        {"pattern": "^PU[0-9][A-Z]{3}$", "level": "C"},
+        {"pattern": "^PV2[K-Y][A-Z]{2}$", "level": "C"}
+      ]
+    },
+    {
+      "key": "ca",
+      "name": "Canada",
+      "regulator": "ISED",
+      "rules": "RBR-4 Issue 3 (July 2022); RIC-3 Issue 5 (March 2022); Radiocommunication Regulations",
+      "term": "Qualification",
+      "termLocal": "qualification",
+      "entities": ["VE"],
+      "levels": [
+        {"code": "B", "name": "Basic", "nameLocal": "Basic Qualification / compétence de base", "tier": "basic", "maxPowerW": 560},
+        {"code": "B/H", "name": "Basic with Honours", "nameLocal": "Basic Qualification with Honours / compétence de base reçue avec distinction", "tier": "full", "maxPowerW": 560},
+        {"code": "B+5", "name": "Basic + Morse (5 wpm)", "nameLocal": "Morse Code Qualification / compétence en code Morse", "tier": "full", "maxPowerW": 560},
+        {"code": "B+A", "name": "Basic + Advanced", "nameLocal": "Advanced Qualification / compétence supérieure", "tier": "full", "maxPowerW": 2250}
+      ]
+    },
+    {
+      "key": "ch",
+      "name": "Switzerland",
+      "regulator": "OFCOM/BAKOM",
+      "term": "Licence Class",
+      "termLocal": "Fähigkeitszeugnis (DE) / certificat de capacité (FR); formerly Konzession",
+      "entities": ["HB"],
+      "levels": [
+        {"code": "HB3", "name": "Novice", "nameLocal": "Einsteigerausweis für Funkamateurinnen und Funkamateure (Fähigkeitszeugnis Novice)", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "HB9", "name": "Full (CEPT)", "nameLocal": "Fähigkeitszeugnis für den Amateurfunk (CEPT)", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^HB3[A-Z]{3}$", "level": "HB3"},
+        {"pattern": "^HB9[A-Z]{3}$", "level": "HB9"}
+      ]
+    },
+    {
+      "key": "cl",
+      "name": "Chile",
+      "regulator": "SUBTEL",
+      "rules": "DS 523/2006 (Reglamento del Servicio de Aficionados a las Radiocomunicaciones) as amended by DS 213/2012; Res. Exenta 1228/2008 + 175/2014 (callsigns); DS 127/2006 + DS 192/2023 (band plan)",
+      "term": "License Category",
+      "termLocal": "categoría",
+      "entities": ["CE", "CE0Y", "CE0X", "CE0Z"],
+      "levels": [
+        {"code": "ASP", "name": "Aspirant", "nameLocal": "Aspirante", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "N", "name": "Novice", "nameLocal": "Novicio", "tier": "intermediate", "maxPowerW": 200},
+        {"code": "G", "name": "General", "tier": "full", "maxPowerW": 1200},
+        {"code": "S", "name": "Superior", "tier": "full", "maxPowerW": 1200}
+      ],
+      "callsigns": [
+        {"pattern": "^CD[0-9][A-Z]{3}$", "level": "ASP"},
+        {"pattern": "^CA[0-9][A-Z]{3}$", "level": "N"},
+        {"pattern": "^CE[0-9][A-Z]{1,3}$", "level": "G", "entities": ["CE"]},
+        {"pattern": "^XQ[0-9][A-Z]{1,3}$", "level": "S"}
+      ]
+    },
+    {
+      "key": "cn",
+      "name": "China",
+      "regulator": "MIIT (工业和信息化部)",
+      "term": "Operator Class",
+      "termLocal": "业余无线电台操作技术能力类别",
+      "entities": ["BY"],
+      "levels": [
+        {"code": "A", "name": "Class A", "nameLocal": "A类", "tier": "basic", "maxPowerW": 25},
+        {"code": "B", "name": "Class B", "nameLocal": "B类", "tier": "full", "maxPowerW": 15},
+        {"code": "B-pre2024", "name": "Class B (obtained before 2024-03-01)", "nameLocal": "B类 (2024年3月1日前取得)", "tier": "full", "legacy": true, "maxPowerW": 100},
+        {"code": "C", "name": "Class C", "nameLocal": "C类", "tier": "full", "maxPowerW": 1000}
+      ]
+    },
+    {
+      "key": "cz",
+      "name": "Czech Republic",
+      "regulator": "ČTÚ (Český telekomunikační úřad)",
+      "term": "Operator Class",
+      "termLocal": "třída operátora",
+      "entities": ["OK"],
+      "levels": [
+        {"code": "N", "name": "Class N (Novice)", "nameLocal": "Operátorská třída N", "tier": "intermediate", "maxPowerW": 10},
+        {"code": "A", "name": "Class A", "nameLocal": "Operátorská třída A", "tier": "full", "maxPowerW": 750}
+      ],
+      "callsigns": [
+        {"pattern": "^OK9[A-Z]{3}$", "level": "N", "atLeast": true},
+        {"pattern": "^OK[1-7][A-Z]{2,3}$", "level": "A"}
+      ]
+    },
+    {
+      "key": "de",
+      "name": "Germany",
+      "regulator": "BNetzA (Bundesnetzagentur)",
+      "term": "License Class",
+      "termLocal": "Klasse",
+      "entities": ["DL"],
+      "levels": [
+        {"code": "N", "name": "Class N", "nameLocal": "Klasse N", "tier": "basic", "maxPowerW": 10},
+        {"code": "E", "name": "Class E", "nameLocal": "Klasse E", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "Class A", "nameLocal": "Klasse A", "tier": "full", "maxPowerW": 750}
+      ],
+      "callsigns": [
+        {"pattern": "^DN9[A-Z]{2,3}$", "level": "N", "atLeast": true},
+        {"pattern": "^(DO[1-9]|DA6)[A-Z]{2,3}$", "level": "E", "atLeast": true},
+        {"pattern": "^(DA[12]|DB[1-9]|DC[0-9]|DD[0-9]|DF[1-9]|DG[0-9]|DH[0-9]|DJ[0-9]|DK[1-9]|DL[1-9]|DM[1-9])[A-Z]{1,3}$", "level": "A"}
+      ]
+    },
+    {
+      "key": "dk",
+      "name": "Denmark",
+      "regulator": "Digitaliseringsstyrelsen (formerly SDFI)",
+      "rules": "BEK nr 499 af 29/05/2026 (in force 2026-07-01), Bilag 4",
+      "term": "Certificate category",
+      "termLocal": "certifikat, kategori",
+      "entities": ["OZ"],
+      "levels": [
+        {"code": "D", "name": "Category D", "nameLocal": "Certifikat kategori D", "tier": "basic", "maxPowerW": 50},
+        {"code": "B", "name": "Category B", "nameLocal": "Certifikat kategori B", "tier": "full", "maxPowerW": 100},
+        {"code": "A", "name": "Category A", "nameLocal": "Certifikat kategori A", "tier": "full", "aliases": ["Certifikat kategori C"], "maxPowerW": 1000}
+      ]
+    },
+    {
+      "key": "gb",
+      "name": "United Kingdom",
+      "regulator": "Ofcom",
+      "term": "Licence Class",
+      "termLocal": "licence class",
+      "entities": ["G", "GM", "GW", "GI"],
+      "levels": [
+        {"code": "F", "name": "Foundation", "nameLocal": "Foundation Licence", "tier": "intermediate", "maxPowerW": 25},
+        {"code": "I", "name": "Intermediate", "nameLocal": "Intermediate Licence", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "FULL", "name": "Full", "nameLocal": "Full Licence", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^M[A-Z]?[367][A-Z]{3}$", "level": "F"},
+        {"pattern": "^M[A-Z]?[89][A-Z]{3}$", "level": "I"},
+        {"pattern": "^2[A-Z][01][A-Z]{3}$", "level": "I"},
+        {"pattern": "^G[A-Z]?[0-8][A-Z]{2,3}$", "level": "FULL"},
+        {"pattern": "^M[A-Z]?[015][A-Z]{2,3}$", "level": "FULL"}
+      ]
+    },
+    {
+      "key": "hr",
+      "name": "Croatia",
+      "regulator": "HAKOM (Hrvatska regulatorna agencija za mrežne djelatnosti)",
+      "term": "Operator Class",
+      "termLocal": "radioamaterski razred",
+      "entities": ["9A"],
+      "levels": [
+        {"code": "P", "name": "Class P (Beginner)", "nameLocal": "početnički P razred", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "Class A", "nameLocal": "A razred", "tier": "full", "maxPowerW": 1500}
+      ]
+    },
+    {
+      "key": "hu",
+      "name": "Hungary",
+      "regulator": "NMHH (Nemzeti Média- és Hírközlési Hatóság)",
+      "term": "License Grade",
+      "termLocal": "engedély fokozata",
+      "entities": ["HA"],
+      "levels": [
+        {"code": "KEZDO", "name": "Beginner (Kezdő)", "nameLocal": "Kezdő fokozatú engedély", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "NOVICE", "name": "CEPT Novice", "nameLocal": "CEPT Novice fokozatú engedély", "tier": "intermediate", "maxPowerW": 200},
+        {"code": "CEPT", "name": "CEPT (full)", "nameLocal": "CEPT fokozatú engedély", "tier": "full", "maxPowerW": 1500}
+      ]
+    },
+    {
+      "key": "id",
+      "name": "Indonesia",
+      "regulator": "Komdigi (formerly Kominfo), Ditjen SDPPI",
+      "term": "Licence Level",
+      "termLocal": "Tingkat IAR",
+      "entities": ["YB"],
+      "levels": [
+        {"code": "SIAGA", "name": "General", "nameLocal": "Tingkat Siaga", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "PENGGALANG", "name": "Advanced", "nameLocal": "Tingkat Penggalang", "tier": "intermediate", "maxPowerW": 500},
+        {"code": "PENEGAK", "name": "Extra Class", "nameLocal": "Tingkat Penegak", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^Y[DG][0-9][A-Z]{1,3}$", "level": "SIAGA"},
+        {"pattern": "^Y[CF][0-9][A-Z]{1,3}$", "level": "PENGGALANG"},
+        {"pattern": "^Y[BE][0-9][A-Z]{1,3}$", "level": "PENEGAK"}
+      ]
+    },
+    {
+      "key": "jp",
+      "name": "Japan",
+      "regulator": "MIC (総務省)",
+      "term": "Operator Class",
+      "termLocal": "資格 / 級",
+      "entities": ["JA", "JD/o", "JD/m"],
+      "levels": [
+        {"code": "4", "name": "4th Class", "nameLocal": "第四級アマチュア無線技士", "tier": "intermediate", "maxPowerW": 20, "superModes": ["PHONE", "DATA"]},
+        {"code": "3", "name": "3rd Class", "nameLocal": "第三級アマチュア無線技士", "tier": "intermediate", "maxPowerW": 50},
+        {"code": "2", "name": "2nd Class", "nameLocal": "第二級アマチュア無線技士", "tier": "full", "maxPowerW": 200},
+        {"code": "1", "name": "1st Class", "nameLocal": "第一級アマチュア無線技士", "tier": "full", "maxPowerW": 1000}
+      ]
+    },
+    {
+      "key": "kr",
+      "name": "Republic of Korea",
+      "regulator": "MSIT (과학기술정보통신부) / 중앙전파관리소; exams KCA",
+      "term": "Operator Class",
+      "termLocal": "아마추어무선기사 자격 등급",
+      "entities": ["HL"],
+      "levels": [
+        {"code": "4", "name": "4th Class", "nameLocal": "제4급 아마추어무선기사", "tier": "basic", "maxPowerW": 10, "superModes": ["PHONE", "DATA"]},
+        {"code": "3P", "name": "3rd Class (Telephony)", "nameLocal": "제3급 아마추어무선기사(전화급)", "tier": "intermediate", "maxPowerW": 100, "superModes": ["PHONE", "DATA"]},
+        {"code": "3T", "name": "3rd Class (Telegraphy)", "nameLocal": "제3급 아마추어무선기사(전신급)", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "2", "name": "2nd Class", "nameLocal": "제2급 아마추어무선기사", "tier": "full", "maxPowerW": 200},
+        {"code": "1", "name": "1st Class", "nameLocal": "제1급 아마추어무선기사", "tier": "full", "maxPowerW": 1000}
+      ]
+    },
+    {
+      "key": "my",
+      "name": "Malaysia",
+      "regulator": "MCMC",
+      "term": "Licence Class",
+      "termLocal": "Kelas",
+      "entities": ["9M2", "9M6"],
+      "levels": [
+        {"code": "C", "name": "Class C", "nameLocal": "Kelas C", "tier": "basic", "maxPowerW": 25, "superModes": ["PHONE", "DATA"]},
+        {"code": "B", "name": "Class B", "nameLocal": "Kelas B", "tier": "intermediate", "maxPowerW": 50},
+        {"code": "A", "name": "Class A", "nameLocal": "Kelas A", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^9W3[A-Z]{2,3}$", "level": "C"},
+        {"pattern": "^9W[268][A-Z]{2,3}$", "level": "B"},
+        {"pattern": "^9M[268][A-Z]{2,3}$", "level": "A"}
+      ]
+    },
+    {
+      "key": "nl",
+      "name": "Netherlands",
+      "regulator": "RDI (Rijksinspectie Digitale Infrastructuur)",
+      "term": "Licence Class",
+      "termLocal": "categorie registratie",
+      "entities": ["PA"],
+      "levels": [
+        {"code": "N", "name": "Novice", "nameLocal": "N-registratie (beperkte toegang)", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "F", "name": "Full", "nameLocal": "F-registratie (volledige toegang)", "tier": "full", "maxPowerW": 400}
+      ],
+      "callsigns": [
+        {"pattern": "^PD[0-9][A-Z]{2,3}$", "level": "N"}
+      ]
+    },
+    {
+      "key": "no",
+      "name": "Norway",
+      "regulator": "Nasjonal kommunikasjonsmyndighet (Nkom)",
+      "rules": "Forskrift om radioamatørvirksomhet FOR-2026-03-23-465 (in force 2026-03-23)",
+      "term": "Licence class",
+      "termLocal": "lisensklasse",
+      "entities": ["LA", "JW", "JX", "3Y/b", "3Y/p"],
+      "levels": [
+        {"code": "begrenset", "name": "Limited licence", "nameLocal": "Begrenset lisens", "tier": "intermediate", "maxPowerW": 10},
+        {"code": "A", "name": "Full licence", "nameLocal": "Full lisens (HAREC klasse A)", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^L[AB][0-9][A-Z]{1,3}$", "level": "A", "entities": ["LA"]}
+      ]
+    },
+    {
+      "key": "pl",
+      "name": "Poland",
+      "regulator": "UKE (Urząd Komunikacji Elektronicznej)",
+      "term": "License Category",
+      "termLocal": "kategoria pozwolenia",
+      "entities": ["SP"],
+      "levels": [
+        {"code": "3", "name": "Category 3", "nameLocal": "pozwolenie kategorii 3", "tier": "full", "maxPowerW": 100},
+        {"code": "1", "name": "Category 1", "nameLocal": "pozwolenie kategorii 1", "tier": "full", "maxPowerW": 500}
+      ]
+    },
+    {
+      "key": "ro",
+      "name": "Romania",
+      "regulator": "ANCOM",
+      "term": "License Class",
+      "termLocal": "clasa",
+      "entities": ["YO"],
+      "levels": [
+        {"code": "IV", "name": "Class IV", "nameLocal": "Clasa a IV-a", "tier": "full", "maxPowerW": 50},
+        {"code": "III", "name": "Class III", "nameLocal": "Clasa a III-a", "tier": "full", "maxPowerW": 100},
+        {"code": "II", "name": "Class II", "nameLocal": "Clasa a II-a", "tier": "full", "maxPowerW": 200},
+        {"code": "I", "name": "Class I", "nameLocal": "Clasa I", "tier": "full", "maxPowerW": 400}
+      ]
+    },
+    {
+      "key": "rs",
+      "name": "Serbia",
+      "regulator": "RATEL",
+      "term": "License Class",
+      "termLocal": "класа радио-аматера",
+      "entities": ["YU"],
+      "levels": [
+        {"code": "C", "name": "Class C (basic)", "nameLocal": "Класа C", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "B", "name": "Class B (advanced)", "nameLocal": "Класа B", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "Class A", "nameLocal": "Класа A", "tier": "full", "maxPowerW": 1500}
+      ]
+    },
+    {
+      "key": "ru",
+      "name": "Russia",
+      "regulator": "ГКРЧ / Минцифры России (allocation), Роскомнадзор + ФГУП ГРЧЦ (registration, callsigns), СРР (qualification exams)",
+      "rules": "Решение ГКРЧ 10-07-01 ред. 18-45-02 (2018-04-16, valid to 2028-04-01); Приказ Минкомсвязи №184 (2012); Приказ №4 (2012) ред. 2019",
+      "term": "Category",
+      "termLocal": "категория",
+      "entities": ["UA", "UA2", "UA9"],
+      "levels": [
+        {"code": "4", "name": "Category 4", "nameLocal": "4 категория (начальная квалификация)", "tier": "basic", "maxPowerW": 5},
+        {"code": "3", "name": "Category 3", "nameLocal": "3 категория (квалификация новичка)", "tier": "full", "maxPowerW": 10},
+        {"code": "2", "name": "Category 2", "nameLocal": "2 категория (основная/базовая квалификация)", "tier": "full", "maxPowerW": 1000},
+        {"code": "1", "name": "Category 1", "nameLocal": "1 категория (высшая квалификация)", "tier": "full", "maxPowerW": 1000}
+      ],
+      "callsigns": [
+        {"pattern": "^R[0-9][A-Z]{4}$", "level": "4"},
+        {"pattern": "^U[BCD][0-9][A-Z]{3}$", "level": "3", "atLeast": true},
+        {"pattern": "^(R[A-Z]?|U[A-I])[0-9][A-Z]{1,2}$", "level": "1"},
+        {"pattern": "^(R[ACDGJ-NOQT-Z]|UA)[0-9][A-Z]{3}$", "level": "2", "atLeast": true}
+      ]
+    },
+    {
+      "key": "se",
+      "name": "Sweden",
+      "regulator": "Post- och telestyrelsen (PTS); certificates/callsigns issued by SSA under delegation",
+      "rules": "PTSFS 2025:1 (licence exemption; in force 2025-03-17)",
+      "term": "Certificate",
+      "termLocal": "certifikat",
+      "entities": ["SM"],
+      "levels": [
+        {"code": "insteg", "name": "Entry-level certificate", "nameLocal": "Instegscertifikat för amatörradio", "tier": "intermediate", "maxPowerW": 25},
+        {"code": "1", "name": "Amateur radio certificate (HAREC)", "nameLocal": "Amatörradiocertifikat", "tier": "full", "maxPowerW": 200}
+      ],
+      "callsigns": [
+        {"pattern": "^SH[0-9][A-Z]{3}$", "level": "insteg"},
+        {"pattern": "^S[AM][0-9][A-Z]{1,3}$", "level": "1"}
+      ]
+    },
+    {
+      "key": "si",
+      "name": "Slovenia",
+      "regulator": "AKOS (Agencija za komunikacijska omrežja in storitve RS)",
+      "term": "Operator Class",
+      "termLocal": "razred radioamaterja",
+      "entities": ["S5"],
+      "levels": [
+        {"code": "N", "name": "Class N (Novice)", "nameLocal": "razred N", "tier": "intermediate", "maxPowerW": 100},
+        {"code": "A", "name": "Class A", "nameLocal": "razred A", "tier": "full", "maxPowerW": 1500}
+      ],
+      "callsigns": [
+        {"pattern": "^S52[A-XZ][A-Z]{2}$", "level": "N", "atLeast": true},
+        {"pattern": "^S58[A-X][A-Z]{2}$", "level": "N", "atLeast": true}
+      ]
+    },
+    {
+      "key": "ua",
+      "name": "Ukraine",
+      "regulator": "НКЕК (National Commission for State Regulation of Electronic Communications...), УДЦР (callsigns/permits)",
+      "rules": "Регламент аматорського радіозв'язку України, Постанова НКЕК 10.05.2023 №173 (МЮ 29.06.2023 №1106/40162), Annex 2 Table 12",
+      "term": "Qualification",
+      "termLocal": "кваліфікація радіоаматора",
+      "entities": ["UR"],
+      "levels": [
+        {"code": "C", "name": "Entry level (student)", "nameLocal": "C — радіоаматор-учень", "tier": "intermediate", "maxPowerW": 40},
+        {"code": "B", "name": "Novice", "nameLocal": "B — радіоаматор-початківець", "tier": "intermediate", "aliases": ["3 категорія"], "maxPowerW": 100},
+        {"code": "A", "name": "Higher qualification (HAREC)", "nameLocal": "A — вища кваліфікація радіоаматора", "tier": "full", "aliases": ["1 категорія", "2 категорія"], "maxPowerW": 200}
+      ],
+      "callsigns": [
+        {"pattern": "^U[R-Z][0-9][A-Z]{2}$", "level": "A"}
+      ]
+    },
+    {
+      "key": "us",
+      "name": "United States",
+      "regulator": "FCC",
+      "rules": "47 CFR Part 97 (eCFR, current to 2026-10-09)",
+      "term": "License Class",
+      "termLocal": "operator license class",
+      "entities": ["K", "KL", "KH6", "KP4", "KP2", "KP1", "KP5", "KG4", "KH0", "KH1", "KH2", "KH3", "KH4", "KH5", "KH7K", "KH8", "KH8/s", "KH9"],
+      "levels": [
+        {"code": "N", "name": "Novice", "tier": "basic", "legacy": true, "maxPowerW": 200},
+        {"code": "T", "name": "Technician", "tier": "basic", "maxPowerW": 1500},
+        {"code": "G", "name": "General", "tier": "intermediate", "maxPowerW": 1500},
+        {"code": "A", "name": "Advanced", "tier": "intermediate", "legacy": true, "maxPowerW": 1500},
+        {"code": "E", "name": "Amateur Extra", "tier": "full", "maxPowerW": 1500}
+      ],
+      "callsigns": [
+        {"pattern": "^[KNW][0-9][A-Z]{2}$", "level": "E", "entities": ["K"]},
+        {"pattern": "^[AKNW][A-Z][0-9][A-Z]$", "level": "E", "entities": ["K"]},
+        {"pattern": "^A[A-K][0-9][A-Z]{2}$", "level": "E", "entities": ["K"]},
+        {"pattern": "^[KNW][A-Z][0-9][A-Z]{2}$", "level": "A", "atLeast": true, "entities": ["K"]},
+        {"pattern": "^[KNW][0-9][A-Z]{3}$", "level": "T", "atLeast": true, "entities": ["K"]},
+        {"pattern": "^[KNW]P[0-9][A-Z]$", "level": "E", "entities": ["KP4", "KP2", "KP1", "KP5"]},
+        {"pattern": "^KP[0-9][A-Z]{2}$", "level": "A", "atLeast": true, "entities": ["KP4", "KP2", "KP1", "KP5"]},
+        {"pattern": "^[NW]P[0-9][A-Z]{2}$", "level": "T", "atLeast": true, "entities": ["KP4", "KP2", "KP1", "KP5"]}
+      ]
+    }
+  ]
+}

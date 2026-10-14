@@ -1,5 +1,5 @@
 import BandPlans from '../data/bandPlans.json'
-import type { BandPlansData, SegmentWithMetadata, ModeForFrequencyOptions } from '../types'
+import type { BandPlanSegment, BandPlansData, SegmentWithMetadata, ModeForFrequencyOptions } from '../types'
 
 export const SUPER_MODES: readonly string[] = [
   'CW',
@@ -177,9 +177,17 @@ export function superModeForMode(mode: string): SuperMode {
 
 const bandPlansData = BandPlans as unknown as BandPlansData
 
+/**
+ * A segment that limits license levels says who may transmit, not what mode is used there. It has no
+ * `mode`, so letting it into the mode lookup would make it the narrowest match and blank the guess.
+ */
+function isLicenseSegment(segment: BandPlanSegment): boolean {
+  return Boolean(segment.exceptLevels || segment.levels)
+}
+
 const AllSegments: SegmentWithMetadata[] = Object.keys(bandPlansData.bands).reduce((segments, band) => {
   return segments.concat(
-    bandPlansData.bands[band].segments.map(segment => {
+    bandPlansData.bands[band].segments.filter(segment => !isLicenseSegment(segment)).map(segment => {
       const mhz = Array.isArray(segment.mhz) && segment.mhz.length >= 2
         ? [segment.mhz[0], segment.mhz[1]] as [number, number]
         : [0, 0] as [number, number]

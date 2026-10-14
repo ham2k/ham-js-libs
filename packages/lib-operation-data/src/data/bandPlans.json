@@ -8,19 +8,46 @@
     { "url": "https://www.arrl.org/news/view/updated-arrl-us-amateur-radio-bands-charts-now-available" }
   ],
   "bands": {
+    "2190m": {
+      "mhz": [135.7, 137.8],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "bg:2", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "my:C", "my:B", "nl:N", "no:begrenset", "rs:C", "rs:B", "ru:4", "se:insteg", "si:N", "ua:C", "ua:B", "us:N", "us:T"],
+      "segments": [
+        { "name": "JP 4th Class: DATA only", "mhz": [135.7, 137.8], "levels": ["jp:4"], "superModes": ["DATA"] }
+      ]
+    },
+    "630m": {
+      "mhz": [472, 479],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "bg:2", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "de:N", "de:E", "dk:D", "gb:F", "gb:I", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "my:C", "my:B", "nl:N", "no:begrenset", "rs:C", "rs:B", "se:insteg", "si:N", "us:N", "us:T"],
+      "segments": [
+        { "name": "JP 4th Class: DATA only", "mhz": [472, 479], "levels": ["jp:4"], "superModes": ["DATA"] }
+      ]
+    },
+    "560m": {
+      "mhz": [501, 504],
+      "exceptLevels": ["be:C", "be:B"],
+      "segments": []
+    },
     "160m": {
       "mhz": [1800, 2000],
+      "exceptLevels": ["at:3", "au:F", "au:S", "be:C", "bg:2", "ca:B", "cl:ASP", "cl:N", "cn:A", "de:N", "dk:D", "hr:P", "hu:KEZDO", "id:SIAGA", "kr:4", "my:C", "my:B", "nl:N", "no:begrenset", "rs:C", "rs:B", "ru:4", "se:insteg", "si:N", "us:N", "us:T"],
       "segments": [
         { "name": "Out of band Reg1", "mhz": [1800, 1810], "mode": false, "regions": [ 1 ] },
         { "name": "CW Reg1", "mhz": [1810, 1838], "mode": "CW", "regions": [ 1 ] },        { "name": "Data", "mhz": [1800, 1810], "mode": "RTTY" },
         { "name": "CW", "mhz": [1800, 1843], "mode": "CW" },
         { "name": "FT8", "mhz": [1840, 1843], "mode": "FT8", "priority": 100 },
         { "name": "Phone", "mhz": [1843, 2000], "mode": "SSB", "submode": "LSB" },
-        { "name": "Australia", "mhz": [1800, 1875], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [1800, 1875], "mode": null, "countries": ["au"] },
+        { "name": "BR: Class A only", "mhz": [1850, 2000], "exceptLevels": ["br:C", "br:B"] },
+        { "name": "CZ: Class A only", "mhz": [1810, 1830], "exceptLevels": ["cz:N"] },
+        { "name": "HU: CEPT (full) only", "mhz": [1850, 2000], "exceptLevels": ["hu:NOVICE"] },
+        { "name": "JP 4th Class: DATA only", "mhz": [1907.5, 1912.5], "levels": ["jp:4"], "superModes": ["DATA"] },
+        { "name": "UA Entry level (student): DATA only", "mhz": [1840, 1842], "levels": ["ua:C"], "superModes": ["DATA"] },
+        { "name": "UA: Novice, Higher qualification (HAREC) only", "mhz": [1842, 1850], "exceptLevels": ["ua:C"] }
       ]
     },
     "80m": {
-      "mhz": [3500, 3800],
+      "mhz": [3500, 4000],
+      "exceptLevels": ["at:3", "bg:2", "ca:B", "cn:A", "de:N", "dk:D", "kr:4", "my:C", "nl:N", "ru:4", "se:insteg"],
       "segments": [
         { "name": "CW Reg1", "mhz": [3500, 3570], "mode": "CW", "regions": [ 1 ] },
         { "name": "CW", "mhz": [3500, 3600], "mode": "CW" },
@@ -29,11 +56,27 @@
         { "name": "Data", "mhz": [3570, 3600], "mode": "RTTY" },
         { "name": "FT8", "mhz": [3573, 3576], "mode": "FT8", "priority": 100 },
         { "name": "Phone", "mhz": [3600, 4000], "mode": "SSB", "submode": "LSB" },
-        { "name": "Australia", "mhz": [3500, 3800], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [3500, 3800], "mode": null, "countries": ["au"] },
+        { "name": "AU: Advanced only", "mhz": [3776, 3800], "exceptLevels": ["au:F", "au:S"] },
+        { "name": "BR: Class A only", "mhz": [3800, 4000], "exceptLevels": ["br:C", "br:B"] },
+        { "name": "CZ: Class A only", "mhz": [3500, 3550], "exceptLevels": ["cz:N"] },
+        { "name": "CZ: Class A only", "mhz": [3700, 3800], "exceptLevels": ["cz:N"] },
+        { "name": "UA: Novice, Higher qualification (HAREC) only", "mhz": [3650, 3700], "exceptLevels": ["ua:C"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [3700, 3730], "exceptLevels": ["ua:C", "ua:B"] },
+        { "name": "UA: Novice, Higher qualification (HAREC) only", "mhz": [3730, 3740], "exceptLevels": ["ua:C"] },
+        { "name": "UA Novice: DATA only", "mhz": [3730, 3740], "levels": ["ua:B"], "superModes": ["DATA"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [3740, 3800], "exceptLevels": ["ua:C", "ua:B"] },
+        { "name": "US: Amateur Extra only", "mhz": [3500, 3525], "exceptLevels": ["us:N", "us:T", "us:G", "us:A"] },
+        { "name": "US Novice, Technician: CW only", "mhz": [3525, 3600], "levels": ["us:N", "us:T"], "superModes": ["CW"] },
+        { "name": "US: Amateur Extra only", "mhz": [3600, 3700], "exceptLevels": ["us:N", "us:T", "us:G", "us:A"] },
+        { "name": "US: Advanced, Amateur Extra only", "mhz": [3700, 3800], "exceptLevels": ["us:N", "us:T", "us:G"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [3800, 3900], "exceptLevels": ["us:N", "us:T"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [3900, 4000], "regions": [2], "exceptLevels": ["us:N", "us:T"] }
       ]
     },
     "60m": {
-      "mhz": [5330.5, 3406.5],
+      "mhz": [5250, 5450],
+      "exceptLevels": ["at:3", "at:4", "be:C", "be:B", "bg:2", "br:C", "br:B", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "de:N", "de:E", "dk:D", "gb:F", "gb:I", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "id:PENGGALANG", "my:C", "nl:N", "no:begrenset", "rs:C", "rs:B", "se:insteg", "si:N", "us:N", "us:T"],
       "segments": [
         { "name": "60m Channel 1", "mhz": [5330.5, 5333.5] },
         { "name": "60m Channel 2", "mhz": [5346.5, 5349.5] },
@@ -44,6 +87,7 @@
     },
     "40m": {
       "mhz": [7000, 7300],
+      "exceptLevels": ["at:3", "at:4", "bg:2", "ca:B", "ch:HB3", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "kr:4", "my:C", "ru:4"],
       "segments": [
         { "name": "CW", "mhz": [7000, 7060], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [7000, 7040], "mode": "CW", "regions": [ 1 ] },
@@ -54,11 +98,22 @@
         { "name": "Data", "mhz": [7080, 7125], "mode": "RTTY", "countries": [ "us" ] },
         { "name": "Phone", "mhz": [7125, 7300], "mode": "SSB", "submode": "LSB", "countries": [ "us" ] },
         { "name": "Australia", "mhz": [7000, 7300], "mode": null, "countries": ["au"] },
-        { "name": "Out of band Reg1", "mhz": [7200, 7300], "mode": false, "regions": [ 1 ] }
+        { "name": "Out of band Reg1", "mhz": [7200, 7300], "mode": false, "regions": [ 1 ] },
+        { "name": "BR: Class B, Class A only", "mhz": [7047, 7300], "exceptLevels": ["br:C"] },
+        { "name": "HU: CEPT Novice, CEPT (full) only", "mhz": [7100, 7175], "exceptLevels": ["hu:KEZDO"] },
+        { "name": "UA Entry level (student): CW only", "mhz": [7040, 7050], "levels": ["ua:C"], "superModes": ["CW"] },
+        { "name": "UA Entry level (student): CW/PHONE only", "mhz": [7050, 7080], "levels": ["ua:C"], "superModes": ["CW", "PHONE"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [7100, 7200], "exceptLevels": ["ua:C", "ua:B"] },
+        { "name": "US: Amateur Extra only", "mhz": [7000, 7025], "exceptLevels": ["us:N", "us:T", "us:G", "us:A"] },
+        { "name": "US Novice, Technician: CW only", "mhz": [7025, 7125], "levels": ["us:N", "us:T"], "superModes": ["CW"] },
+        { "name": "US: Advanced, Amateur Extra only", "mhz": [7125, 7175], "exceptLevels": ["us:N", "us:T", "us:G"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [7175, 7200], "exceptLevels": ["us:N", "us:T"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [7200, 7300], "regions": [2], "exceptLevels": ["us:N", "us:T"] }
       ]
     },
     "30m": {
       "mhz": [10100, 10150],
+      "exceptLevels": ["ar:N", "ar:G", "at:3", "at:4", "au:F", "au:S", "bg:2", "br:C", "br:B", "ca:B", "ch:HB3", "cl:ASP", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "id:PENGGALANG", "jp:4", "jp:3", "kr:4", "kr:3P", "kr:3T", "my:C", "nl:N", "no:begrenset", "rs:C", "rs:B", "ru:4", "se:insteg", "si:N", "us:N", "us:T"],
       "segments": [
         { "name": "CW", "mhz": [10100, 10150], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [10100, 10130], "mode": "CW", "regions": [ 1 ] },
@@ -66,11 +121,13 @@
         { "name": "FT8", "mhz": [10136, 10139], "mode": "FT8", "priority": 100 },
         { "name": "FT4", "mhz": [10140, 10143], "mode": "FT4", "priority": 100 },
         { "name": "Australia & New Zealand", "mhz": [10100, 10150], "mode": null, "countries": ["au", "nz"] },
-        { "name": "Africa south of the Equator", "mhz": [10100, 10150], "mode": null, "countries": ["ao","bi","bw","cd","cg","ga","ke","km","ls","mg","mu","mw","mz","na","rw","sc","so","st","sz","tz","ug","za","zm","zw"] }
+        { "name": "Africa south of the Equator", "mhz": [10100, 10150], "mode": null, "countries": ["ao","bi","bw","cd","cg","ga","ke","km","ls","mg","mu","mw","mz","na","rw","sc","so","st","sz","tz","ug","za","zm","zw"] },
+        { "name": "UA Entry level (student): CW only", "mhz": [10136, 10150], "levels": ["ua:C"], "superModes": ["CW"] }
       ]
     },
     "20m": {
       "mhz": [14000, 14350],
+      "exceptLevels": ["at:3", "at:4", "au:F", "bg:2", "br:C", "br:B", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "id:SIAGA", "jp:4", "jp:3", "kr:4", "kr:3P", "kr:3T", "my:C", "rs:C", "ru:4", "si:N", "ua:C", "us:N", "us:T"],
       "segments": [
         { "name": "CW", "mhz": [14000, 14150], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [14000, 14070], "mode": "CW", "regions": [ 1 ] },
@@ -80,11 +137,27 @@
         { "name": "FT4", "mhz": [14080, 14083], "mode": "FT4", "priority": 100 },
         { "name": "Phone", "mhz": [14112, 14350], "mode": "SSB", "submode": "USB", "regions": [ 1, 2 ] },
         { "name": "Phone", "mhz": [14150, 14350], "mode": "SSB", "submode": "USB", "countries": [ "us" ] },
-        { "name": "Australia", "mhz": [14000, 14350], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [14000, 14350], "mode": null, "countries": ["au"] },
+        { "name": "AR: General, Superior, Special only", "mhz": [14000, 14070], "exceptLevels": ["ar:N"] },
+        { "name": "AR Novice: CW/DATA only", "mhz": [14070, 14099], "levels": ["ar:N"], "superModes": ["CW", "DATA"] },
+        { "name": "AR: General, Superior, Special only", "mhz": [14099, 14350], "exceptLevels": ["ar:N"] },
+        { "name": "HR: Class A only", "mhz": [14000, 14040], "exceptLevels": ["hr:P"] },
+        { "name": "HR: Class A only", "mhz": [14150, 14280], "exceptLevels": ["hr:P"] },
+        { "name": "HU: CEPT Novice, CEPT (full) only", "mhz": [14300, 14350], "exceptLevels": ["hu:KEZDO"] },
+        { "name": "ID Advanced: CW only", "mhz": [14000, 14070], "levels": ["id:PENGGALANG"], "superModes": ["CW"] },
+        { "name": "ID Advanced: DATA only", "mhz": [14070, 14110], "levels": ["id:PENGGALANG"], "superModes": ["DATA"] },
+        { "name": "ID: Extra Class only", "mhz": [14150, 14350], "exceptLevels": ["id:PENGGALANG"] },
+        { "name": "UA Novice: CW/DATA only", "mhz": [14100, 14112], "levels": ["ua:B"], "superModes": ["CW", "DATA"] },
+        { "name": "UA Novice: CW only", "mhz": [14112, 14250], "levels": ["ua:B"], "superModes": ["CW"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [14250, 14350], "exceptLevels": ["ua:B"] },
+        { "name": "US: Amateur Extra only", "mhz": [14000, 14025], "exceptLevels": ["us:G", "us:A"] },
+        { "name": "US: Amateur Extra only", "mhz": [14150, 14175], "exceptLevels": ["us:G", "us:A"] },
+        { "name": "US: Advanced, Amateur Extra only", "mhz": [14175, 14225], "exceptLevels": ["us:G"] }
       ]
     },
     "17m": {
       "mhz": [18068, 18168],
+      "exceptLevels": ["ar:N", "at:3", "at:4", "au:F", "au:S", "be:C", "bg:2", "br:C", "br:B", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "id:PENGGALANG", "jp:4", "kr:4", "kr:3P", "kr:3T", "my:C", "nl:N", "rs:C", "rs:B", "ru:4", "se:insteg", "si:N", "us:N", "us:T"],
       "segments": [
         { "name": "CW", "mhz": [18068, 18110], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [18068, 18095], "mode": "CW", "regions": [ 1 ] },
@@ -94,11 +167,13 @@
         { "name": "Beacons only", "mhz": [18109, 18111], "priority": 100 },
         { "name": "Phone", "mhz": [18111, 18168], "mode": "SSB", "submode": "USB" },
         { "name": "Phone US", "mhz": [18110, 18168], "mode": "SSB", "submode": "USB", "countries": [ "us" ] },
-        { "name": "Australia", "mhz": [18068, 18168], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [18068, 18168], "mode": null, "countries": ["au"] },
+        { "name": "UA Entry level (student): CW only", "mhz": [18100, 18168], "levels": ["ua:C"], "superModes": ["CW"] }
       ]
     },
     "15m": {
       "mhz": [21000, 21450],
+      "exceptLevels": ["at:3", "bg:2", "ca:B", "cl:ASP", "cl:N", "cn:A", "de:N", "dk:D", "kr:4", "my:C", "nl:N", "rs:C", "ru:4"],
       "segments": [
         { "name": "CW", "mhz": [21000, 21150], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [21000, 21070], "mode": "CW", "regions": [ 1 ] },
@@ -108,11 +183,31 @@
         { "name": "Beacons only", "mhz": [21149, 21151], "priority": 100 },
         { "name": "Phone", "mhz": [21151, 21450], "mode": "SSB", "submode": "USB" },
         { "name": "Phone US", "mhz": [21150, 21450], "mode": "SSB", "submode": "USB", "countries": [ "us" ] },
-        { "name": "Australia", "mhz": [21000, 21450], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [21000, 21450], "mode": null, "countries": ["au"] },
+        { "name": "AR: General, Superior, Special only", "mhz": [21000, 21070], "exceptLevels": ["ar:N"] },
+        { "name": "AR Novice: CW/DATA only", "mhz": [21070, 21125], "levels": ["ar:N"], "superModes": ["CW", "DATA"] },
+        { "name": "AR Novice: CW only", "mhz": [21125, 21149], "levels": ["ar:N"], "superModes": ["CW"] },
+        { "name": "AR: General, Superior, Special only", "mhz": [21149, 21200], "exceptLevels": ["ar:N"] },
+        { "name": "AR: Superior, Special only", "mhz": [21310, 21450], "exceptLevels": ["ar:N", "ar:G"] },
+        { "name": "BR: Class B, Class A only", "mhz": [21150, 21300], "exceptLevels": ["br:C"] },
+        { "name": "BR: Class A only", "mhz": [21300, 21450], "exceptLevels": ["br:C", "br:B"] },
+        { "name": "CZ: Class A only", "mhz": [21000, 21050], "exceptLevels": ["cz:N"] },
+        { "name": "CZ: Class A only", "mhz": [21200, 21450], "exceptLevels": ["cz:N"] },
+        { "name": "ID General: CW only", "mhz": [21000, 21070], "levels": ["id:SIAGA"], "superModes": ["CW"] },
+        { "name": "ID General: CW/DATA only", "mhz": [21070, 21125], "levels": ["id:SIAGA"], "superModes": ["CW", "DATA"] },
+        { "name": "ID General: CW only", "mhz": [21125, 21200], "levels": ["id:SIAGA"], "superModes": ["CW"] },
+        { "name": "ID: Advanced, Extra Class only", "mhz": [21200, 21450], "exceptLevels": ["id:SIAGA"] },
+        { "name": "UA Entry level (student), Novice: CW only", "mhz": [21250, 21450], "levels": ["ua:C", "ua:B"], "superModes": ["CW"] },
+        { "name": "US: Amateur Extra only", "mhz": [21000, 21025], "exceptLevels": ["us:N", "us:T", "us:G", "us:A"] },
+        { "name": "US Novice, Technician: CW only", "mhz": [21025, 21200], "levels": ["us:N", "us:T"], "superModes": ["CW"] },
+        { "name": "US: Amateur Extra only", "mhz": [21200, 21225], "exceptLevels": ["us:N", "us:T", "us:G", "us:A"] },
+        { "name": "US: Advanced, Amateur Extra only", "mhz": [21225, 21275], "exceptLevels": ["us:N", "us:T", "us:G"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [21275, 21450], "exceptLevels": ["us:N", "us:T"] }
       ]
     },
     "12m": {
-      "mhz": [24890, 24990],
+      "mhz": [24740, 24990],
+      "exceptLevels": ["ar:N", "at:3", "at:4", "au:F", "au:S", "be:C", "bg:2", "ca:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "cz:N", "de:N", "de:E", "dk:D", "hr:P", "hu:KEZDO", "id:SIAGA", "id:PENGGALANG", "kr:4", "my:C", "nl:N", "no:begrenset", "rs:C", "rs:B", "ru:4", "se:insteg", "si:N", "us:N", "us:T"],
       "segments": [
         { "name": "CW", "mhz": [24890, 24930], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [24890, 24915], "mode": "CW", "regions": [ 1 ] },
@@ -122,11 +217,13 @@
         { "name": "Phone", "mhz": [24930, 24990], "mode": "SSB", "submode": "USB" },
         { "name": "Beacons only", "mhz": [24929, 24931], "priority": 100 },
         { "name": "Phone US", "mhz": [24930, 24990], "mode": "SSB", "submode": "USB", "countries": [ "us" ] },
-        { "name": "Australia", "mhz": [24890, 24990], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [24890, 24990], "mode": null, "countries": ["au"] },
+        { "name": "UA Entry level (student): CW only", "mhz": [24915, 24990], "levels": ["ua:C"], "superModes": ["CW"] }
       ]
     },
     "10m": {
       "mhz": [28000, 29700],
+      "exceptLevels": ["at:3", "bg:2", "ca:B", "cn:A", "kr:4", "my:C", "rs:C", "ru:4"],
       "segments": [
         { "name": "CW", "mhz": [28000, 28190], "mode": "CW" },
         { "name": "CW Reg1", "mhz": [28000, 28070], "mode": "CW", "regions": [ 1 ] },
@@ -141,11 +238,23 @@
         { "name": "Repeater Uplinks", "mhz": [29520, 29590] },
         { "name": "FM", "mhz": [29520, 29700], "mode": "FM" },
         { "name": "Repeater Downlinks", "mhz": [29620, 29700] },
-        { "name": "Australia", "mhz": [28000, 29700], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [28000, 29700], "mode": null, "countries": ["au"] },
+        { "name": "CZ: Class A only", "mhz": [28000, 28050], "exceptLevels": ["cz:N"] },
+        { "name": "CZ: Class A only", "mhz": [28400, 29700], "exceptLevels": ["cz:N"] },
+        { "name": "UA Entry level (student), Novice: CW/PHONE only", "mhz": [28675, 28685], "levels": ["ua:C", "ua:B"], "superModes": ["CW", "PHONE"] },
+        { "name": "UA: Novice, Higher qualification (HAREC) only", "mhz": [29300, 29520], "exceptLevels": ["ua:C"] },
+        { "name": "US Novice, Technician: CW/PHONE only", "mhz": [28300, 28500], "levels": ["us:N", "us:T"], "superModes": ["CW", "PHONE"] },
+        { "name": "US: General, Advanced, Amateur Extra only", "mhz": [28500, 29700], "exceptLevels": ["us:N", "us:T"] }
       ]
+    },
+    "8m": {
+      "mhz": [40660, 40700],
+      "exceptLevels": ["be:C", "be:B", "si:N"],
+      "segments": []
     },
     "6m": {
       "mhz": [50000, 54000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "be:C", "bg:2", "ch:HB3", "cl:ASP", "cz:N", "de:N", "de:E", "hr:P", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "nl:N", "rs:C", "rs:B", "ua:C", "ua:B", "us:N"],
       "segments": [
         { "name": "Beacon project Reg1", "mhz": [50000, 50010], "mode": null, "regions": [ 1 ] },
         { "name": "Beacon project Reg2", "mhz": [50010, 50020], "mode": null, "regions": [ 2 ] },
@@ -161,11 +270,13 @@
         { "name": "FT8", "mhz": [50313, 50316], "mode": "FT8", "priority": 100 },
         { "name": "FT4", "mhz": [50318, 50321], "mode": "FT4", "priority": 100 },
         { "name": "FT8", "mhz": [50323, 50326], "mode": "FT8", "priority": 100 },
-        { "name": "Australia", "mhz": [50000, 54000], "mode": null, "countries": ["au"] }
+        { "name": "Australia", "mhz": [50000, 54000], "mode": null, "countries": ["au"] },
+        { "name": "AR Novice: CW only", "mhz": [51000, 51100], "levels": ["ar:N"], "superModes": ["CW"] }
       ]
     },
     "4m": {
-      "mhz": [70000, 70500],
+      "mhz": [69887.5, 70512.5],
+      "exceptLevels": ["be:C", "be:B", "bg:2", "ch:HB3", "hr:P", "hu:KEZDO", "hu:NOVICE", "nl:N", "no:begrenset", "rs:C", "rs:B"],
       "segments": [
         { "name": "Beacons only Reg1", "mhz": [70090, 70100], "mode": "CW", "regions": [ 1 ] },
         { "name": "CW Reg1", "mhz": [70000, 70090], "mode": "CW", "regions": [ 1 ] },
@@ -178,6 +289,7 @@
     },
     "2m": {
       "mhz": [144000, 148000],
+      "exceptLevels": ["us:N"],
       "segments": [
         { "name": "CW", "mhz": [144000, 144100], "mode": "CW" },
         { "name": "Satellite downlink Reg1", "mhz": [144000, 144025], "mode": null, "regions": [ 1 ] },
@@ -192,19 +304,26 @@
         { "name": "Reg1", "mhz": [144500, 144794], "mode": null, "regions": [ 1 ] },
         { "name": "FM Satellite Reg1", "mhz": [145194, 145206], "mode": "FM", "regions": [ 1 ] },
         { "name": "FM Reg1", "mhz": [145206, 145563], "mode": "FM", "regions": [ 1 ] },
-        { "name": "Out of band Reg1", "mhz": [146000, 148000], "mode": false, "regions": [ 1 ] }
+        { "name": "Out of band Reg1", "mhz": [146000, 148000], "mode": false, "regions": [ 1 ] },
+        { "name": "HU: CEPT (full) only", "mhz": [144400, 144500], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "HU: CEPT (full) only", "mhz": [145562.5, 145794], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [144000, 144035], "exceptLevels": ["ua:C", "ua:B"] }
       ]
     },
     "1.25m": {
-      "mhz": [222000, 225000],
+      "mhz": [219000, 225000],
+      "exceptLevels": ["cl:ASP"],
       "segments": [
         { "name": "CW", "mhz": [222000, 222070], "mode": "CW" },
         { "name": "Phone", "mhz": [222070, 222150], "mode": "SSB", "submode": "USB" },
-        { "name": "FM", "mhz": [222200, 225000], "mode": "FM" }
+        { "name": "FM", "mhz": [222200, 225000], "mode": "FM" },
+        { "name": "AR Novice: DATA only", "mhz": [220500, 221000], "levels": ["ar:N"], "superModes": ["DATA"] },
+        { "name": "US: Technician, General, Advanced, Amateur Extra only", "mhz": [219000, 220000], "regions": [2], "exceptLevels": ["us:N"] }
       ]
     },
     "70cm": {
       "mhz": [420000, 450000],
+      "exceptLevels": ["cl:ASP", "se:insteg", "us:N"],
       "segments": [
         { "name": "Out of band Reg1", "mhz": [420000, 430000], "mode": false, "regions": [ 1 ]},
         { "name": "CW", "mhz": [432000, 432100], "mode": "CW" },
@@ -213,14 +332,90 @@
         { "name": "Phone", "mhz": [432100, 432400], "mode": "SSB", "submode": "USB", "regions": [ 1 ] },
         { "name": "FM", "mhz": [420000, 450000], "mode": "FM" },
         { "name": "FM Reg1", "mhz": [433400, 433575], "mode": "FM", "regions": [ 1 ] },
-        { "name": "Out of band Reg1", "mhz": [440000, 450000], "mode": false, "regions": [ 1 ]}
+        { "name": "Out of band Reg1", "mhz": [440000, 450000], "mode": false, "regions": [ 1 ]},
+        { "name": "HU: CEPT (full) only", "mhz": [431975, 432000], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "HU: CEPT (full) only", "mhz": [432400, 432500], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "HU: CEPT (full) only", "mhz": [438000, 440000], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [432000, 432025], "exceptLevels": ["ua:C", "ua:B"] }
       ]
     },
     "33cm": {
       "mhz": [902000, 928000],
       "segments": [
-        { "name": "FM", "mhz": [927000, 928000], "mode": "FM" }
+        { "name": "FM", "mhz": [927000, 928000], "mode": "FM" },
+        { "name": "US: Technician, General, Advanced, Amateur Extra only", "mhz": [902000, 928000], "regions": [2], "exceptLevels": ["us:N"] }
       ]
+    },
+    "23cm": {
+      "mhz": [1240000, 1325000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "be:C", "be:B", "bg:2", "ch:HB3", "cl:ASP", "de:N", "gb:F", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "no:begrenset", "rs:C", "rs:B", "se:insteg", "si:N"],
+      "segments": [
+        { "name": "HU: CEPT (full) only", "mhz": [1240000, 1290994], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "HU Beginner (Kezdő), CEPT Novice: PHONE only", "mhz": [1290994, 1291494], "levels": ["hu:KEZDO", "hu:NOVICE"], "superModes": ["PHONE"] },
+        { "name": "HU: CEPT (full) only", "mhz": [1291494, 1297494], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "HU Beginner (Kezdő), CEPT Novice: PHONE only", "mhz": [1297494, 1298000], "levels": ["hu:KEZDO", "hu:NOVICE"], "superModes": ["PHONE"] },
+        { "name": "HU: CEPT (full) only", "mhz": [1298000, 1300000], "exceptLevels": ["hu:KEZDO", "hu:NOVICE"] },
+        { "name": "US: Technician, General, Advanced, Amateur Extra only", "mhz": [1240000, 1270000], "exceptLevels": ["us:N"] },
+        { "name": "US: Technician, General, Advanced, Amateur Extra only", "mhz": [1295000, 1300000], "exceptLevels": ["us:N"] }
+      ]
+    },
+    "13cm": {
+      "mhz": [2300000, 2450000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "be:C", "be:B", "ch:HB3", "cl:ASP", "de:N", "dk:D", "hu:KEZDO", "hu:NOVICE", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "se:insteg", "si:N", "us:N"],
+      "segments": [
+        { "name": "AU: Advanced only", "mhz": [2300000, 2302000], "exceptLevels": ["au:S"] },
+        { "name": "GB: Intermediate, Full only", "mhz": [2310000, 2350000], "exceptLevels": ["gb:F"] },
+        { "name": "GB: Intermediate, Full only", "mhz": [2390000, 2400000], "exceptLevels": ["gb:F"] }
+      ]
+    },
+    "9cm": {
+      "mhz": [3300000, 3600000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "cl:ASP", "cl:N", "cn:A", "de:N", "dk:D", "gb:F", "hr:P", "my:C", "my:B", "nl:N", "no:begrenset", "si:N"],
+      "segments": []
+    },
+    "6cm": {
+      "mhz": [5650000, 5925000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "be:C", "be:B", "ch:HB3", "cl:ASP", "cn:A", "de:N", "dk:D", "hu:KEZDO", "hu:NOVICE", "my:C", "my:B", "nl:N", "no:begrenset", "se:insteg", "si:N", "us:N"],
+      "segments": [
+        { "name": "GB: Intermediate, Full only", "mhz": [5830000, 5850000], "exceptLevels": ["gb:F"] },
+        { "name": "UA: Entry level (student), Higher qualification (HAREC) only", "mhz": [5660000, 5670000], "exceptLevels": ["ua:B"] },
+        { "name": "UA: Higher qualification (HAREC) only", "mhz": [5830000, 5850000], "exceptLevels": ["ua:C", "ua:B"] }
+      ]
+    },
+    "3cm": {
+      "mhz": [10000000, 10500000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "de:N", "dk:D", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "pl:1", "se:insteg", "si:N", "us:N"],
+      "segments": []
+    },
+    "1.25cm": {
+      "mhz": [24000000, 24250000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cl:ASP", "cl:N", "cn:A", "de:N", "dk:D", "gb:F", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "kr:4", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "no:begrenset", "se:insteg", "si:N", "us:N"],
+      "segments": []
+    },
+    "6mm": {
+      "mhz": [47000000, 48500000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cn:A", "de:N", "gb:F", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "kr:4", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "si:N", "us:N"],
+      "segments": []
+    },
+    "4mm": {
+      "mhz": [75500000, 81500000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cn:A", "de:N", "gb:F", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "kr:4", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "si:N", "us:N"],
+      "segments": []
+    },
+    "2.5mm": {
+      "mhz": [119980000, 123000000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "de:N", "gb:F", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "nl:N", "si:N", "us:N"],
+      "segments": []
+    },
+    "2mm": {
+      "mhz": [134000000, 149000000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cn:A", "de:N", "gb:F", "hu:KEZDO", "hu:NOVICE", "id:SIAGA", "kr:4", "kr:3P", "kr:3T", "nl:N", "si:N", "us:N"],
+      "segments": []
+    },
+    "1mm": {
+      "mhz": [241000000, 250000000],
+      "exceptLevels": ["at:3", "at:4", "au:F", "au:S", "be:C", "be:B", "ch:HB3", "cn:A", "de:N", "gb:F", "hu:KEZDO", "hu:NOVICE", "kr:4", "kr:3P", "kr:3T", "my:C", "my:B", "nl:N", "si:N", "us:N"],
+      "segments": []
     }
   }
 }

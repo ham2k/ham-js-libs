@@ -7,10 +7,17 @@ export interface BandPlanSegment {
   regions?: number[]
   entities?: string[]
   countries?: string[]
+  /** License levels ("us:G") that may not transmit anywhere in this segment. */
+  exceptLevels?: string[]
+  /** License levels ("us:T") limited, in this segment, to `superModes`. */
+  levels?: string[]
+  superModes?: string[]
 }
 
 export interface BandPlan {
   mhz: [number, number] | number[]
+  /** License levels ("us:T") that may not transmit anywhere on the band. */
+  exceptLevels?: string[]
   segments: BandPlanSegment[]
 }
 

@@ -38,7 +38,7 @@ describe('parseFreq', () => {
     expect(parseFreq('14,285.5')).toEqual(14285.5)
     expect(parseFreq('432.100.000')).toEqual(432100)
     // A display string reads back as the frequency it shows.
-    for (const freq of [7200.5, 14074.25, 146520, 432100.5]) {
+    for (const freq of [7200.5, 14074.25, 146520, 432100.5, 1296000, 10368100.5]) {
       expect(parseFreq(fmtFreq(freq))).toEqual(freq)
     }
   })
@@ -52,6 +52,11 @@ describe('parseFreq', () => {
     expect(parseFreq('1.296.000')).toEqual(1296000)
     expect(parseFreq('1,296,000')).toEqual(1296000)
     expect(parseFreq('10.368.100')).toEqual(10368100)
+    // How fmtFreq writes them: MHz.kHz, read as kHz they are no band.
+    expect(parseFreq('1296.000')).toEqual(1296000)
+    expect(parseFreq('1296,2')).toEqual(1296200)
+    expect(parseFreq('10368.100')).toEqual(10368100)
+    expect(parseFreq('14285.5')).toEqual(14285.5)
     expect(parseFreq('5.0')).toEqual(5000)
   })
   it('should not let a microwave reading take an HF band or a band name', () => {
@@ -59,6 +64,7 @@ describe('parseFreq', () => {
     // is the 1.25m band before it is 1.25 GHz.
     expect(parseFreq('10.125')).toEqual(10125)
     expect(parseFreq('10.125.000')).toEqual(10125)
+    expect(parseFreq('10125.000')).toEqual(10125)
     expect(parseFreq('3.5')).toEqual(3500)
     expect(parseFreq('1.25')).toEqual(1250)
     expect(parseFreq('1,25')).toEqual(1250)

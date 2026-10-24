@@ -57,9 +57,11 @@ function isIn(ranges: number[][], freq: number): boolean {
  * A period or a comma marks both thousands and the decimal — `14.285`,
  * `14.285.5`, `1.296.000` — so one mark has up to three readings a thousandfold
  * apart, and the one that names a band wins: MHz (`14.285`), else kHz for
- * 2190m and 630m (`472.5`), else GHz for the microwave bands (`1.296`). With
- * two or more marks the last is the decimal (`14.200.5`), unless only reading
- * every mark as grouping names a band (`1.296.000`, 23cm).
+ * 2190m and 630m (`472.5`), else GHz for the microwave bands (`1.296`).
+ * Above 1000 one mark is kHz (`14285.5`), unless only MHz names a band:
+ * `1296.000`, which is how `fmtFreq` writes 23cm. With two or more marks the
+ * last is the decimal (`14.200.5`), unless only reading every mark as
+ * grouping names a band (`1.296.000`).
  *
  * A group that cannot be grouping (`14.2.5`) gives null rather than a guess.
  */
@@ -73,6 +75,8 @@ export function parseFreq(freq: string | number): number | null {
     // `1.25` also names the 1.25m band, which a frequency must not shadow.
     if (marked === '1.25') return 1250
     freq = parseFloat(marked)
+    // 1296.000 -> 1,296,000
+    if (groups.length === 2 && freq >= 1000 && isIn(GHZ_RESCUES, freq * 1000)) return parseFloat((freq * 1000).toFixed(3))
   }
 
   if (freq < 1000) {
@@ -100,12 +104,16 @@ export function parseFreq(freq: string | number): number | null {
 function parseGroupedFreq(groups: string[]): number | null {
   const first = groups[0]
   const last = groups[groups.length - 1]
-  if (first.length < 1 || first.length > 3 || last.length < 1) return null
+  if (first.length < 1 || last.length < 1) return null
   if (groups.slice(1, -1).some((group) => group.length !== 3)) return null
 
   const allGrouped = parseFloat(groups.join(''))
-  if (last.length === 3 && isIn(GHZ_RESCUES, allGrouped)) return allGrouped
+  if (first.length <= 3 && last.length === 3 && isIn(GHZ_RESCUES, allGrouped)) return allGrouped
 
   // No short forms here: the marks already say where the kHz are.
-  return parseFloat(parseFloat(`${groups.slice(0, -1).join('')}.${last}`).toFixed(3))
+  const withDecimal = parseFloat(parseFloat(`${groups.slice(0, -1).join('')}.${last}`).toFixed(3))
+  // A first group past three digits is whole MHz, as fmtFreq writes a
+  // microwave frequency (`10368.100.5`), or else a stray mark (`14285.200.5`).
+  if (first.length > 3 && !isIn(GHZ_RESCUES, withDecimal)) return null
+  return withDecimal
 }

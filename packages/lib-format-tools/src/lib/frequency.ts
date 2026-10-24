@@ -31,36 +31,81 @@ export function partsForFreq(freq: number): string[] {
 }
 
 const REMOVE_NON_DIGITS_REGEX = /[^0-9.,]/g
-const MORE_THAN_ONE_PERIOD_REGEX = /(\.)(\d+)(\.)/g
+const COMMAS_REGEX = /,/g
 
+// The bands where a number read the obvious way is no band but read a
+// thousandfold off is one, in kHz. Not a band plan: only these decide between
+// readings, so a band whose digits mean something else as MHz must leave
+// them out — 30m, read as MHz, sits inside 3cm read as GHz, and 3.5 is 80m.
+const KHZ_RESCUES = [[135.7, 137.8], [472, 479]] // 2190m, 630m
+const GHZ_RESCUES = [
+  [1240000, 1300000], // 23cm
+  [2300000, 2450000], // 13cm
+  [3300000, 3450000], // 9cm
+  [5650000, 5925000], // 6cm
+  [10000000, 10099999], [10150001, 10500000], // 3cm, around 30m
+  [24000000, 24250000] // 1.25cm
+]
+
+function isIn(ranges: number[][], freq: number): boolean {
+  return ranges.some(([low, high]) => freq >= low && freq <= high)
+}
+
+/**
+ * Reads a frequency typed or displayed in Ham2K notation, in kHz.
+ *
+ * A period or a comma marks both thousands and the decimal — `14.285`,
+ * `14.285.5`, `1.296.000` — so one mark has up to three readings a thousandfold
+ * apart, and the one that names a band wins: MHz (`14.285`), else kHz for
+ * 2190m and 630m (`472.5`), else GHz for the microwave bands (`1.296`). With
+ * two or more marks the last is the decimal (`14.200.5`), unless only reading
+ * every mark as grouping names a band (`1.296.000`, 23cm).
+ *
+ * A group that cannot be grouping (`14.2.5`) gives null rather than a guess.
+ */
 export function parseFreq(freq: string | number): number | null {
   if (freq === null || freq === undefined) return null
 
   if (typeof freq !== 'number') {
-    freq = freq.replace(REMOVE_NON_DIGITS_REGEX, '')
-    freq = freq.replace(',', '.')
-    freq = freq.replace(MORE_THAN_ONE_PERIOD_REGEX, '$2$3')
-
-    freq = parseFloat(freq)
+    const marked = freq.replace(REMOVE_NON_DIGITS_REGEX, '').replace(COMMAS_REGEX, '.')
+    const groups = marked.split('.')
+    if (groups.length > 2) return parseGroupedFreq(groups)
+    // `1.25` also names the 1.25m band, which a frequency must not shadow.
+    if (marked === '1.25') return 1250
+    freq = parseFloat(marked)
   }
 
-  if (freq !== undefined) {
-    if (freq < 1000) {
-      // General case: 14.000 -> 14,000
+  if (freq < 1000) {
+    if (isIn(GHZ_RESCUES, freq * 1000000)) {
+      // 1.296 -> 1,296,000
+      freq *= 1000000
+    } else if (!isIn(KHZ_RESCUES, freq)) {
+      // General case: 14.000 -> 14,000, but 472.5 stays 472.5
       freq *= 1000
-    } else if (freq >= 14400 && freq < 14800) {
-      // 14652 -> 146,520
-      freq *= 10
-    } else if (freq >= 22200 && freq < 22500) {
-      // 22252 -> 222,520
-      freq *= 10
-    } else if (freq >= 42000 && freq < 45000) {
-      // 43520 -> 435,200
-      freq *= 10
     }
-
-    return parseFloat(freq.toFixed(3))
-  } else {
-    return null
+  } else if (freq >= 14400 && freq < 14800) {
+    // 14652 -> 146,520
+    freq *= 10
+  } else if (freq >= 22200 && freq < 22500) {
+    // 22252 -> 222,520
+    freq *= 10
+  } else if (freq >= 42000 && freq < 45000) {
+    // 43520 -> 435,200
+    freq *= 10
   }
+
+  return parseFloat(freq.toFixed(3))
+}
+
+function parseGroupedFreq(groups: string[]): number | null {
+  const first = groups[0]
+  const last = groups[groups.length - 1]
+  if (first.length < 1 || first.length > 3 || last.length < 1) return null
+  if (groups.slice(1, -1).some((group) => group.length !== 3)) return null
+
+  const allGrouped = parseFloat(groups.join(''))
+  if (last.length === 3 && isIn(GHZ_RESCUES, allGrouped)) return allGrouped
+
+  // No short forms here: the marks already say where the kHz are.
+  return parseFloat(parseFloat(`${groups.slice(0, -1).join('')}.${last}`).toFixed(3))
 }

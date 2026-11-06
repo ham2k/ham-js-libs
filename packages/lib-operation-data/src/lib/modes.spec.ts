@@ -30,5 +30,18 @@ describe('modeForFrequency', () => {
     expect(modeForFrequency(7090, { countryCode: 'au' })).toBeNull()
   })
 
+  it('keeps a US station off phone below the US phone limits, where the IARU plan has phone', () => {
+    // IARU Region 2 has phone from 14112 and 21151; the FCC allows it from 14150 and 21200.
+    const us = { ituRegion: 2, countryCode: 'us' }
+    expect(modeForFrequency(14120, { ituRegion: 2 })).toEqual('SSB')
+    expect(modeForFrequency(14120, us)).toEqual('CW')
+    expect(modeForFrequency(14085, us)).toEqual('RTTY')
+    expect(modeForFrequency(14074, us)).toEqual('FT8')
+    expect(modeForFrequency(14160, us)).toEqual('SSB')
+    expect(modeForFrequency(21170, us)).toEqual('CW')
+    expect(modeForFrequency(21080, us)).toEqual('RTTY')
+    expect(modeForFrequency(21210, us)).toEqual('SSB')
+  })
+
 })
 

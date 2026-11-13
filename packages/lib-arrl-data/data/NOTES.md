@@ -12,6 +12,19 @@ The following corrections were applied when converting it:
 With these, every county count matches the official one: CA 58, FL 67, MA 14, NJ 21,
 NY 62, PA 67, TX 254, WA 39.
 
+## Counties in the wrong section
+
+- **TX / Anderson** → `NTX` (was `WTX`). North Texas lists it in its ARES District 9
+  ([arrlntx.org](https://arrlntx.org/WP/public-service/ares/)), and none of its
+  neighbors is in West Texas.
+- **TX / Bastrop** → `STX` (was `WTX`). South and West Texas publish no county lists,
+  but all five of Bastrop's neighbors, Travis (Austin) among them, are in South Texas.
+
+Both turned up when every split state was checked against the Census Bureau's
+[county adjacency file](https://www.census.gov/geographies/reference-files/time-series/geo/county-adjacency.html):
+no other county borders none of its own section's, Los Angeles aside, a section of
+its own. North Texas's published district lists also match the table county for county.
+
 ## Canadian and territorial codes
 
 The contributed table mapped some provinces and territories to their postal codes
@@ -77,3 +90,43 @@ mention. A station in the Nipissing portion is arguably ONN.
 
 Sources: [RAC field organization changes](https://www.rac.ca/changes-to-the-rac-field-organization-effective-january-1-2023/),
 [ARRL news on the Ontario boundaries](http://www.arrl.org/news/rac-announces-new-ontario-section-boundaries-abbreviations)
+
+# `section-points.json`
+
+Each section's point is the center of its licensed amateurs: the mean position of every
+active license in it, found by summing the positions as vectors on a sphere and rounding
+to 0.01°. `scripts/generate-points.ts` computes it, and records how many licenses each
+point was found from.
+
+## Sources
+
+- **Licenses**: the Ham2K calls dataset's `all` set
+  (`https://services.ham2k.net/lookups/calls/download?set=all`), every active amateur
+  license from the FCC's ULS and ISED, each with the state or province of the licensee's
+  address and a Maidenhead grid geocoded from it. A license counts once, at the middle of
+  its grid square: under a kilometre across for most, several kilometres for the one in
+  twelve geocoded only to a 6-character square.
+- **Counties**: [GeoNames](https://download.geonames.org/export/dump/) towns of 500
+  people or more, with their counties (`admin2`; for Ontario, census divisions). Where a
+  state or province is split, a license goes to the county of the nearest town in its
+  own state or province, and through `sections-for-states.json` to a section. A
+  license near a section line can land on the wrong side of it, but those are few
+  against the thousands in each section.
+
+## What is left out
+
+From the 2026-11-09 data, 877,879 licenses counted, and left out:
+
+- about 33,000 with no grid, mostly Canadian licenses whose address ISED does not
+  publish or that could not be geocoded;
+- about 2,600 with no state or province in a section: military addresses (AE, AP),
+  American Samoa and the Northern Marianas, which are in no section's table;
+- Guam's 274, although Guam is in the Pacific section: they would pull Hawaii's point
+  thousands of kilometres out to sea, near no one. PAC is Hawaii's hams alone.
+- about 150 geocoded more than 200 km from any town in their own state, or near a town
+  with no county.
+
+The script stops if a section has no licenses; if more than 50 licenses are near towns
+of one county the section table does not name, which is how a renamed county shows; or
+if the licenses left out for being far from every town, or near a town in no county of
+the table, come to more than 1% of those counted.

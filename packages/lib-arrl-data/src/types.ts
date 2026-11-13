@@ -20,6 +20,21 @@ export interface ARRLSection {
   divisionCode: string
   /** DXCC-style country the section belongs to: "US" or "CA" */
   countryCode: string
+  /**
+   * Latitude of the center of the section's licensed amateurs, to 0.01°. A coarse
+   * point for maps, distances and bearings: it can fall outside the section, even at sea.
+   */
+  lat: number
+  /** Longitude of the center of the section's licensed amateurs, to 0.01°. */
+  lon: number
+  /** The states and provinces the section covers, in whole or in part, i.e. ["DC", "MD"] */
+  states: string[]
+  /**
+   * When the section is part of a split state or province, its counties, as
+   * `findSection` knows them, in alphabetical order. For Ontario these are census
+   * divisions and the places RAC names. Absent when the section covers whole states.
+   */
+  counties?: string[]
 }
 
 /**

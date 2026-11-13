@@ -1,5 +1,7 @@
 import { ARRLSection } from '../types.js'
 import { ARRL_DIVISIONS } from './divisions.js'
+import { SECTION_POINTS } from './sectionPoints.js'
+import { SECTIONS_FOR_STATES } from './sectionsForStates.js'
 
 const SECTION_NAMES: Record<string, string> = {
   AB: 'Alberta',
@@ -89,13 +91,35 @@ const SECTION_NAMES: Record<string, string> = {
   WY: 'Wyoming'
 }
 
+function pointFor (code: string): { lat: number, lon: number } {
+  const point = SECTION_POINTS[code]
+  if (!point) throw new Error(`No point for section ${code}: run npm run generate:points, then npm run generate`)
+  return { lat: point.lat, lon: point.lon }
+}
+
+/** The states and provinces each section covers, and the counties, when it covers only part of one. */
+const AREAS: Record<string, { states: string[], counties?: string[] }> = {}
+for (const [state, sections] of Object.entries(SECTIONS_FOR_STATES).sort(([a], [b]) => a.localeCompare(b))) {
+  if (typeof sections === 'string') {
+    (AREAS[sections] ??= { states: [] }).states.push(state)
+  } else {
+    for (const [county, code] of Object.entries(sections).sort(([a], [b]) => a.localeCompare(b))) {
+      const area = (AREAS[code] ??= { states: [] })
+      if (!area.states.includes(state)) area.states.push(state)
+      ;(area.counties ??= []).push(county)
+    }
+  }
+}
+
 export const ARRL_SECTIONS: Record<string, ARRLSection> = Object.fromEntries(
   Object.values(ARRL_DIVISIONS).flatMap((division) =>
     division.sectionCodes.map((code) => [code, {
       code,
       name: SECTION_NAMES[code],
       divisionCode: division.code,
-      countryCode: division.countryCode
+      countryCode: division.countryCode,
+      ...pointFor(code),
+      ...AREAS[code]
     }])
   )
 )

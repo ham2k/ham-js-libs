@@ -25,6 +25,8 @@ describe('findSection', () => {
     expect(findSectionCode('NY', 'St. Lawrence')).toEqual('NNY')
     expect(findSectionCode('CA', 'Santa Clara')).toEqual('SCV')
     expect(findSectionCode('TX', 'El Paso')).toEqual('WTX')
+    expect(findSectionCode('TX', 'Anderson')).toEqual('NTX')
+    expect(findSectionCode('TX', 'Bastrop')).toEqual('STX')
     expect(findSectionCode('FL', 'Miami-Dade')).toEqual('SFL')
     expect(findSectionCode('PA', 'Northampton')).toEqual('EPA')
     expect(findSectionCode('PA', 'Forest')).toEqual('WPA')
@@ -103,6 +105,29 @@ describe('ARRL_SECTIONS and ARRL_DIVISIONS', () => {
     for (const section of Object.values(ARRL_SECTIONS)) {
       expect(section.name).toBeTruthy()
       expect(ARRL_DIVISIONS[section.divisionCode]).toBeTruthy()
+    }
+  })
+
+  it('gives every section its states, and its counties when the state is split', () => {
+    for (const section of Object.values(ARRL_SECTIONS)) expect(section.states.length).toBeGreaterThan(0)
+    expect(ARRL_SECTIONS.VT.states).toEqual(['VT'])
+    expect(ARRL_SECTIONS.VT.counties).toBeUndefined()
+    expect(ARRL_SECTIONS.MDC.states).toEqual(['DC', 'MD'])
+    expect(ARRL_SECTIONS.TER.states).toEqual(['NT', 'NU', 'YT'])
+    expect(ARRL_SECTIONS.EMA.states).toEqual(['MA'])
+    expect(ARRL_SECTIONS.EMA.counties).toEqual([
+      'Barnstable', 'Bristol', 'Dukes', 'Essex', 'Middlesex', 'Nantucket', 'Norfolk', 'Plymouth', 'Suffolk'
+    ])
+    expect(ARRL_SECTIONS.NTX.counties).toHaveLength(68)
+    expect(ARRL_SECTIONS.NTX.counties).toContain('Anderson')
+    expect(ARRL_SECTIONS.GH.counties).toContain('Toronto')
+  })
+
+  it('lists each county of a split state in exactly one of its sections', () => {
+    for (const [state, sections] of Object.entries(SECTIONS_FOR_STATES)) {
+      if (typeof sections === 'string') continue
+      const listed = sectionsForState(state).flatMap((section) => section.counties ?? [])
+      expect(listed.sort()).toEqual(Object.keys(sections).sort())
     }
   })
 

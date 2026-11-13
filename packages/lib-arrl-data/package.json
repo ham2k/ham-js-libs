@@ -1,7 +1,7 @@
 {
   "name": "@ham2k/lib-arrl-data",
-  "version": "1.2.0",
-  "description": "ARRL data for amateur radio: sections, divisions and section lookup by state and county",
+  "version": "1.3.0",
+  "description": "ARRL data for amateur radio: sections with their states, counties and where their hams are, divisions and section lookup by state and county",
   "author": "Sebastian Delmont <sd@ham2k.com>",
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
   "scripts": {
     "build": "tsup",
     "generate": "tsx scripts/generate.ts",
+    "generate:points": "tsx scripts/generate-points.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "type-check": "tsc --noEmit",
     "prepublishOnly": "npm run build"

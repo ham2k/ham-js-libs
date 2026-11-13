@@ -1,0 +1,427 @@
+{
+  "AB": {
+    "lat": 52.33,
+    "lon": -113.69,
+    "licenses": 6699
+  },
+  "AK": {
+    "lat": 61.8,
+    "lon": -148.23,
+    "licenses": 3247
+  },
+  "AL": {
+    "lat": 33.43,
+    "lon": -86.72,
+    "licenses": 13201
+  },
+  "AR": {
+    "lat": 35.34,
+    "lon": -92.78,
+    "licenses": 8608
+  },
+  "AZ": {
+    "lat": 33.42,
+    "lon": -111.82,
+    "licenses": 22766
+  },
+  "BC": {
+    "lat": 49.64,
+    "lon": -122.62,
+    "licenses": 15947
+  },
+  "CO": {
+    "lat": 39.47,
+    "lon": -105.28,
+    "licenses": 20896
+  },
+  "CT": {
+    "lat": 41.54,
+    "lon": -72.79,
+    "licenses": 7618
+  },
+  "DE": {
+    "lat": 39.22,
+    "lon": -75.51,
+    "licenses": 2042
+  },
+  "EB": {
+    "lat": 37.89,
+    "lon": -122.08,
+    "licenses": 9626
+  },
+  "EMA": {
+    "lat": 42.26,
+    "lon": -71.08,
+    "licenses": 10627
+  },
+  "ENY": {
+    "lat": 41.97,
+    "lon": -73.9,
+    "licenses": 6922
+  },
+  "EPA": {
+    "lat": 40.42,
+    "lon": -75.92,
+    "licenses": 16314
+  },
+  "EWA": {
+    "lat": 47.24,
+    "lon": -118.73,
+    "licenses": 6538
+  },
+  "GA": {
+    "lat": 33.59,
+    "lon": -83.91,
+    "licenses": 20738
+  },
+  "GH": {
+    "lat": 43.63,
+    "lon": -79.46,
+    "licenses": 8340
+  },
+  "IA": {
+    "lat": 41.94,
+    "lon": -92.88,
+    "licenses": 7095
+  },
+  "ID": {
+    "lat": 44.68,
+    "lon": -115.18,
+    "licenses": 12024
+  },
+  "IL": {
+    "lat": 41,
+    "lon": -88.62,
+    "licenses": 20748
+  },
+  "IN": {
+    "lat": 40.09,
+    "lon": -86.22,
+    "licenses": 16718
+  },
+  "KS": {
+    "lat": 38.51,
+    "lon": -96.29,
+    "licenses": 7750
+  },
+  "KY": {
+    "lat": 37.78,
+    "lon": -85.32,
+    "licenses": 10545
+  },
+  "LA": {
+    "lat": 30.85,
+    "lon": -91.59,
+    "licenses": 6466
+  },
+  "LAX": {
+    "lat": 34.08,
+    "lon": -118.27,
+    "licenses": 16913
+  },
+  "MB": {
+    "lat": 50.11,
+    "lon": -97.55,
+    "licenses": 1910
+  },
+  "MDC": {
+    "lat": 39.14,
+    "lon": -76.82,
+    "licenses": 12203
+  },
+  "ME": {
+    "lat": 44.38,
+    "lon": -69.62,
+    "licenses": 4867
+  },
+  "MI": {
+    "lat": 43.11,
+    "lon": -84.56,
+    "licenses": 22591
+  },
+  "MN": {
+    "lat": 45.26,
+    "lon": -93.47,
+    "licenses": 12305
+  },
+  "MO": {
+    "lat": 38.36,
+    "lon": -92.49,
+    "licenses": 16522
+  },
+  "MS": {
+    "lat": 32.47,
+    "lon": -89.43,
+    "licenses": 5312
+  },
+  "MT": {
+    "lat": 46.91,
+    "lon": -112.01,
+    "licenses": 4788
+  },
+  "NB": {
+    "lat": 46.27,
+    "lon": -66.08,
+    "licenses": 1557
+  },
+  "NC": {
+    "lat": 35.55,
+    "lon": -79.8,
+    "licenses": 25400
+  },
+  "ND": {
+    "lat": 47.34,
+    "lon": -99.34,
+    "licenses": 1639
+  },
+  "NE": {
+    "lat": 41.13,
+    "lon": -97.2,
+    "licenses": 4134
+  },
+  "NFL": {
+    "lat": 29.58,
+    "lon": -82.75,
+    "licenses": 19846
+  },
+  "NH": {
+    "lat": 43.16,
+    "lon": -71.5,
+    "licenses": 6216
+  },
+  "NL": {
+    "lat": 48.71,
+    "lon": -55.65,
+    "licenses": 1375
+  },
+  "NLI": {
+    "lat": 40.74,
+    "lon": -73.65,
+    "licenses": 9565
+  },
+  "NM": {
+    "lat": 34.68,
+    "lon": -106.41,
+    "licenses": 6576
+  },
+  "NNJ": {
+    "lat": 40.71,
+    "lon": -74.35,
+    "licenses": 9287
+  },
+  "NNY": {
+    "lat": 44.04,
+    "lon": -74.72,
+    "licenses": 1554
+  },
+  "NS": {
+    "lat": 44.93,
+    "lon": -63.77,
+    "licenses": 2489
+  },
+  "NTX": {
+    "lat": 32.77,
+    "lon": -96.82,
+    "licenses": 25983
+  },
+  "NV": {
+    "lat": 37.67,
+    "lon": -116.97,
+    "licenses": 8636
+  },
+  "OH": {
+    "lat": 40.4,
+    "lon": -82.85,
+    "licenses": 29369
+  },
+  "OK": {
+    "lat": 35.63,
+    "lon": -96.84,
+    "licenses": 10608
+  },
+  "ONE": {
+    "lat": 44.96,
+    "lon": -76.33,
+    "licenses": 4426
+  },
+  "ONN": {
+    "lat": 47.78,
+    "lon": -85.46,
+    "licenses": 1981
+  },
+  "ONS": {
+    "lat": 43.59,
+    "lon": -80.77,
+    "licenses": 6189
+  },
+  "OR": {
+    "lat": 44.72,
+    "lon": -122.69,
+    "licenses": 21785
+  },
+  "ORG": {
+    "lat": 33.91,
+    "lon": -117.48,
+    "licenses": 19745
+  },
+  "PAC": {
+    "lat": 20.91,
+    "lon": -157.16,
+    "licenses": 3742
+  },
+  "PE": {
+    "lat": 46.35,
+    "lon": -63.32,
+    "licenses": 301
+  },
+  "PR": {
+    "lat": 18.29,
+    "lon": -66.51,
+    "licenses": 5383
+  },
+  "QC": {
+    "lat": 46.81,
+    "lon": -72.27,
+    "licenses": 17872
+  },
+  "RI": {
+    "lat": 41.71,
+    "lon": -71.46,
+    "licenses": 2055
+  },
+  "SB": {
+    "lat": 34.64,
+    "lon": -119.69,
+    "licenses": 5220
+  },
+  "SC": {
+    "lat": 34.08,
+    "lon": -81.13,
+    "licenses": 11463
+  },
+  "SCV": {
+    "lat": 37.29,
+    "lon": -122.02,
+    "licenses": 13422
+  },
+  "SD": {
+    "lat": 44.02,
+    "lon": -99.76,
+    "licenses": 2338
+  },
+  "SDG": {
+    "lat": 32.93,
+    "lon": -117.07,
+    "licenses": 9447
+  },
+  "SF": {
+    "lat": 38.56,
+    "lon": -122.84,
+    "licenses": 6399
+  },
+  "SFL": {
+    "lat": 26.81,
+    "lon": -80.64,
+    "licenses": 14666
+  },
+  "SJV": {
+    "lat": 36.9,
+    "lon": -119.96,
+    "licenses": 7322
+  },
+  "SK": {
+    "lat": 51.61,
+    "lon": -105.7,
+    "licenses": 1457
+  },
+  "SNJ": {
+    "lat": 39.84,
+    "lon": -74.72,
+    "licenses": 4818
+  },
+  "STX": {
+    "lat": 29.84,
+    "lon": -96.7,
+    "licenses": 27814
+  },
+  "SV": {
+    "lat": 39.07,
+    "lon": -121.34,
+    "licenses": 10497
+  },
+  "TER": {
+    "lat": 63.08,
+    "lon": -124.19,
+    "licenses": 277
+  },
+  "TN": {
+    "lat": 35.86,
+    "lon": -85.71,
+    "licenses": 21878
+  },
+  "UT": {
+    "lat": 40.34,
+    "lon": -111.95,
+    "licenses": 20004
+  },
+  "VA": {
+    "lat": 37.94,
+    "lon": -77.97,
+    "licenses": 22106
+  },
+  "VI": {
+    "lat": 18.07,
+    "lon": -64.8,
+    "licenses": 134
+  },
+  "VT": {
+    "lat": 44.09,
+    "lon": -72.82,
+    "licenses": 2224
+  },
+  "WCF": {
+    "lat": 27.78,
+    "lon": -82.36,
+    "licenses": 11180
+  },
+  "WI": {
+    "lat": 43.84,
+    "lon": -89.17,
+    "licenses": 12273
+  },
+  "WMA": {
+    "lat": 42.31,
+    "lon": -72.23,
+    "licenses": 3827
+  },
+  "WNY": {
+    "lat": 42.85,
+    "lon": -77.25,
+    "licenses": 10575
+  },
+  "WPA": {
+    "lat": 40.72,
+    "lon": -79.48,
+    "licenses": 9651
+  },
+  "WTX": {
+    "lat": 32.85,
+    "lon": -102.38,
+    "licenses": 4248
+  },
+  "WV": {
+    "lat": 38.85,
+    "lon": -80.54,
+    "licenses": 6373
+  },
+  "WWA": {
+    "lat": 47.45,
+    "lon": -122.46,
+    "licenses": 29171
+  },
+  "WY": {
+    "lat": 42.79,
+    "lon": -106.92,
+    "licenses": 2496
+  }
+}
